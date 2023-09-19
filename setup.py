@@ -28,6 +28,7 @@ setuptools.setup(
         'torch>=1.8.1',
         'gym<=0.22.0',  # PFRL needs an update for future versions
         'pfrl>=0.2.1',
+        'traci'
     ],
     extras_require={
         "fma2c": ['tensorflow==1.15.5'],

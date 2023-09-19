@@ -23,7 +23,7 @@ def main():
                              'cologne1', 'cologne3', 'cologne8',
                              ])
     ap.add_argument("--pwd", type=str, default=os.path.dirname(__file__))
-    ap.add_argument("--log_dir", type=str, default=os.path.join(os.path.dirname(os.getcwd()), 'results' + os.sep))
+    ap.add_argument("--log_dir", type=str, default='/' + os.path.join(*os.path.dirname(__file__).split('/')[:-1], 'results' + os.sep))
     ap.add_argument("--gui", type=bool, default=False)
     ap.add_argument("--libsumo", type=bool, default=False)
     ap.add_argument("--tr", type=int, default=0)  # Can't multi-thread with libsumo, provide a trial number
