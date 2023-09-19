@@ -113,4 +113,15 @@ map_configs = {
         'end_time': 69000,
         'warmup': 0
     },
+    'vake': {
+        'lights': [],
+        'net': 'environments/vake/vake.sumo.cfg',
+        'route': None,
+        'step_length': 10,
+        'yellow_length': 3,
+        'step_ratio': 1,
+        'start_time': 0,
+        'end_time': 10000,
+        'warmup': 1000
+    }
 }

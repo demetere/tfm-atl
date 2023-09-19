@@ -246,6 +246,7 @@ signal_configs = {
 		'downstream':{'N': 'nt14', 'E': 'nt10', 'S': 'nt4', 'W': 'nt8'}},
 	},
 	'ingolstadt1': {
+        # (S-W, N-N), (N-N, N-W), (E-S, E-N)
 		'phase_pairs': [[1, 7], [7, 8], [9, 11]],
 		'valid_acts': None,
 		'gneJ207': {
@@ -919,6 +920,7 @@ signal_configs = {
 		}
 	},
 	'cologne1': {
+        # ('S-W', 'N-N'), ('S-E', 'N-W'), ('W-W', 'E-E'), ('W-S', 'E-N')
 		'phase_pairs': [[1, 7], [2, 8], [4, 10], [5, 11]],
 		'valid_acts': None,
 		'GS_cluster_357187_359543': {
@@ -1327,4 +1329,5 @@ signal_configs = {
 			}
 		}
 	},
+	'vake': {}
 }
