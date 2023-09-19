@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- generated on 2023-09-06 11:02:11 by Eclipse SUMO netedit Version 1.12.0
+<configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/netconvertConfiguration.xsd">
+
+    <input>
+        <sumo-net-file value="/home/demetere/Projects/mai/traffic-control/dataset/vake.net.xml"/>
+    </input>
+
+    <output>
+        <output-file value="/home/demetere/Projects/mai/traffic-control/dataset/vake.net.xml"/>
+    </output>
+
+    <processing>
+        <geometry.min-radius.fix.railways value="false"/>
+        <geometry.max-grade.fix value="false"/>
+        <offset.disable-normalization value="true"/>
+        <lefthand value="false"/>
+    </processing>
+
+    <junctions>
+        <no-turnarounds value="true"/>
+        <junctions.corner-detail value="5"/>
+        <junctions.limit-turn-speed value="5.5"/>
+        <rectangular-lane-cut value="false"/>
+    </junctions>
+
+    <pedestrian>
+        <walkingareas value="false"/>
+    </pedestrian>
+
+    <netedit>
+        <additional-files value="/home/demetere/Projects/mai/traffic-control/dataset/bus.stops.xml"/>
+    </netedit>
+
+    <report>
+        <aggregate-warnings value="5"/>
+    </report>
+
+</configuration>
+-->
+
+<additional xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/additional_file.xsd">
+    <busStop id="bs_0" lane="-525704074#0_0" startPos="159.71" endPos="169.71"/>
+    <busStop id="bs_1" lane="-542757032#1_0" startPos="40.32" endPos="50.32"/>
+    <busStop id="bs_2" lane="-557086948#2_0" startPos="30.99" endPos="40.99"/>
+    <busStop id="bs_3" lane="-525704074#5_0" startPos="116.30" endPos="126.30"/>
+    <busStop id="bs_4" lane="-235826551#3_0" startPos="65.95" endPos="75.95"/>
+    <busStop id="bs_5" lane="-557086935#4_0" startPos="110.82" endPos="120.82"/>
+    <busStop id="bs_6" lane="-707457972#2_0" startPos="86.19" endPos="96.19"/>
+    <busStop id="bs_7" lane="-665006537_0" startPos="217.32" endPos="227.32"/>
+    <busStop id="bs_8" lane="-753866466#5_0" startPos="18.51" endPos="28.51"/>
+    <busStop id="bs_9" lane="-723085255#5_0" startPos="264.81" endPos="274.81"/>
+</additional>
