@@ -5,8 +5,10 @@ import matplotlib
 matplotlib.use('TkAgg')
 import matplotlib.pyplot as plt
 
-log_dir = os.path.join(os.path.dirname(os.path.dirname(os.getcwd())), 'results' + os.sep)
-env_base = '..'+os.sep+'environments'+os.sep
+# log_dir = os.path.join(os.path.dirname(os.path.dirname(os.getcwd())), 'results' + os.sep)
+log_dir = '/home/demetere/Projects/mai/traffic-control/tfm-atl/resco_benchmark/results/'
+# env_base = '..'+os.sep+'environments'+os.sep
+env_base = '/home/demetere/Projects/mai/traffic-control/tfm-atl/resco_benchmark/environments/'
 names = [folder for folder in next(os.walk(log_dir))[1]]
 
 metric = 'queue'
