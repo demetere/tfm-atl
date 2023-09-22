@@ -7,16 +7,7 @@ from avg_duration import durations
 from avg_waitingTime import waiting
 from avg_queue import queue
 
-map_title = {
-    'grid4x4': '4x4 Grid',
-    'arterial4x4': '4x4 Avenues',
-    'ingolstadt1': 'Ingolstadt Single Signal',
-    'ingolstadt7': 'Ingolstadt Corridor',
-    'ingolstadt21': 'Ingolstadt Region',
-    'cologne1': 'Cologne Single Signal',
-    'cologne3': 'Cologne Corridor',
-    'cologne8': 'Cologne Region'
-}
+map_title = {'vake': 'Vake'}
 
 alg_name = {
     'FIXED': 'Fixed Time',
@@ -35,7 +26,7 @@ statics = ['MAXPRESSURE', 'STOCHASTIC', 'MAXWAVE', 'FIXED']
 
 num_n = -1
 num_episodes = 120
-fs = 21
+fs = 15
 window_size = 5
 
 metrics = [delays, durations, waiting, queue]
@@ -75,6 +66,7 @@ chart = {
 }
 
 for met_i, metric in enumerate(metrics):
+    plt.figure(figsize=(15, 15))
     print('\n', metrics_str[met_i])
     for map in map_title.keys():
         print()
@@ -87,11 +79,6 @@ for met_i, metric in enumerate(metrics):
                 key_map = key.split(' ')[1]
 
                 if alg == 'IDQN': dqn_max = np.max(metric[key])     # Set ylim to DQN max, it's approx. random perf.
-
-                if len(metric[key]) == 0:   # Fixed time isn't applicable to valid. scenario, skip color for consistency
-                    plt.plot([], [])
-                    plt.fill_between([], [], [])
-                    continue
 
                 # Print out performance metric
                 err = metric.get(key + '_yerr')
@@ -116,8 +103,6 @@ for met_i, metric in enumerate(metrics):
                     do_nothing = 0
                 else:
                     print('{} {} +- {}'.format(alg_name[alg], last_n, last_n_err))
-                    if not(map == 'grid4x4' or map == 'arterial4x4'):
-                        chart[alg_name[alg]][metrics_str[met_i]].append(str(last_n)) #+' $\pm$ '+str(last_n_err)
 
                 # Build plots
                 if alg in statics:
@@ -153,20 +138,19 @@ for met_i, metric in enumerate(metrics):
                     if alg == 'FMA2C':  # Skip pink in color cycle
                         plt.plot([], [])
                         plt.fill_between([], [], [])
-                    alg = key.split(' ')[0]
                     x = [num_episodes-1, num_episodes]
                     y = [last_n]*2
                     plt.plot(x, y, label=alg_name[alg])
                     plt.fill_between([], [], [])  # Advance color cycle
 
         points = np.asarray([0, 20, 40, 60, 80, 100, num_episodes])
-        labels = ('0', '20', '40', '60', '80', '100', '..1400')
+        labels = ('0', '20', '40', '60', '80', '100', str(num_episodes))
         plt.yticks(fontsize=fs)
         plt.xticks(points, labels, fontsize=fs)
-        #plt.xlabel('Episode', fontsize=32)
-        #plt.ylabel('Delay (s)', fontsize=32)
+        plt.xlabel('Episode', fontsize=fs)
+        plt.ylabel(f'{metrics_str[met_i]}', fontsize=fs)
         plt.title(map_title[map], fontsize=fs)
-        #plt.legend(prop={'size': 25})
+        plt.legend(prop={'size': fs})
         bot, top = plt.ylim()
         if bot < 0: bot = 0
         plt.ylim(bot, dqn_max)
