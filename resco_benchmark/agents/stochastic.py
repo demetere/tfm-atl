@@ -20,3 +20,6 @@ class STOCHASTICAgent(Agent):
 
     def observe(self, observation, reward, done, info):
         pass
+
+    def save(self, *args, **kwargs):
+        pass
