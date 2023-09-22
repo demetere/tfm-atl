@@ -14,6 +14,9 @@ class Agent(object):
 
     def observe(self, observation, reward, done, info):
         raise NotImplementedError
+    
+    def save(self, path):
+        pass
 
 
 class IndependentAgent(Agent):
