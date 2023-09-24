@@ -40,7 +40,7 @@ for name in names:
                     queue = signal.split(',')
                     queue = int(queue[0])
                     step_total += queue
-                step_avg = step_total / len(signals)
+                step_avg = step_total / (len(signals) - 1)
                 total += step_avg
                 num_steps += 1
 
