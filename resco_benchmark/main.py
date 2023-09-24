@@ -9,12 +9,19 @@ from resco_benchmark.config.agent_config import agent_configs
 from resco_benchmark.config.map_config import map_configs
 from resco_benchmark.config.mdp_config import mdp_configs
 
+try:
+    import tensorflow as tf
+    tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.ERROR)
+except ImportError:
+    pass
+
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--agent", type=str, default='STOCHASTIC',
-                    choices=['STOCHASTIC', 'MAXWAVE', 'MAXPRESSURE', 'IDQN', 'IPPO', 'MPLight', 'MA2C', 'FMA2C',
-                             'MPLightFULL', 'FMA2CFull', 'FMA2CVAL'])
+                    choices=['STOCHASTIC', 'MAXWAVE', 'MAXPRESSURE', 'IDQN', 'IPPO', 'MPLight', 'FMA2C',
+                             'MPLightFULL', 'FMA2CFULL', 'FMA2CVAL'])
     ap.add_argument("--tr", type=int, default=0) # number of tries
     ap.add_argument("--eps", type=int, default=100)
     ap.add_argument("--procs", type=int, default=1)

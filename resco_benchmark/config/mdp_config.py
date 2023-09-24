@@ -1,5 +1,5 @@
 mdp_configs = {
-    'FMA2CFull': {
+    'FMA2CFULL': {
         'grid4x4': {
             'coef': 0.4,
             'coop_gamma': 0.9,
@@ -103,6 +103,23 @@ mdp_configs = {
                 'bot_mgr': ['top_mgr']
             }
         },
+        'vake': {
+            'coef': 0.4,
+            'coop_gamma': 0.9,
+            'clip_wave': 4.0,
+            'clip_wait': 4.0,
+            'norm_wave': 5.0,
+            'norm_wait': 100.0,
+            'alpha': 0.75,
+            'management': {
+                'top_mgr': ['cluster_10650430968_255124678_7780080657_889421539', 'cluster_255125290_3691148917', 'cluster_255125584_3691148895'],
+                'bot_mgr': ['6512114401', 'cluster_3691152249_3787229048', '2133700182']
+            },
+            'management_neighbors': {
+                'top_mgr': ['bot_mgr'],
+                'bot_mgr': ['top_mgr']
+            }
+        }
     },
     'FMA2C': {
         'grid4x4': {
@@ -251,6 +268,23 @@ mdp_configs = {
                 'top_mgr': []
             }
         },
+        'vake': {
+            'coef': 0.4,
+            'coop_gamma': 0.9,
+            'clip_wave': 4.0,
+            'clip_wait': 4.0,
+            'norm_wave': 5.0,
+            'norm_wait': 100.0,
+            'alpha': 0.75,
+            'management': {
+                'top_mgr': ['cluster_10650430968_255124678_7780080657_889421539', 'cluster_255125290_3691148917', 'cluster_255125584_3691148895'],
+                'bot_mgr': ['6512114401', 'cluster_3691152249_3787229048', '2133700182']
+            },
+            'management_neighbors': {
+                'top_mgr': ['bot_mgr'],
+                'bot_mgr': ['top_mgr']
+            }
+        }
     },
     'FMA2CVAL': {
         'grid4x4': {
