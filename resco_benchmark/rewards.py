@@ -137,7 +137,7 @@ def fma2c(signals):
 
 
 def fma2c_full(signals):
-    fma2c_config = mdp_configs['FMA2CFull']
+    fma2c_config = mdp_configs['FMA2CFULL']
     management = fma2c_config['management']
     supervisors = fma2c_config['supervisors']   # reverse of management
     management_neighbors = fma2c_config['management_neighbors']
@@ -185,7 +185,7 @@ def fma2c_full(signals):
         reward = 0
         for lane in signal.lanes:
             reward += signal.full_observation[lane]['queue']
-            reward += (signal.full_observation[lane]['max_wait'] * mdp_configs['FMA2CFull']['coef'])
+            reward += (signal.full_observation[lane]['max_wait'] * mdp_configs['FMA2CFULL']['coef'])
         rewards[signal_id] = -reward
 
     neighborhood_rewards = dict()

@@ -230,7 +230,7 @@ def fma2c(signals):
 
 
 def fma2c_full(signals):
-    fma2c_config = mdp_configs['FMA2CFull']
+    fma2c_config = mdp_configs['FMA2CFULL']
     management = fma2c_config['management']
     supervisors = fma2c_config['supervisors']   # reverse of management
     management_neighbors = fma2c_config['management_neighbors']
