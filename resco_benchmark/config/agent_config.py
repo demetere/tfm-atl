@@ -16,14 +16,16 @@ agent_configs = {
         'state': states.wave,
         'reward': rewards.wait,
         'max_distance': 50,
-        'save_freq': 5
+        'save_freq': 5,
+        'load': False
     },
     'MAXPRESSUREVAL': {
         'agent': MAXPRESSURE,
         'state': states.mplight,
         'reward': rewards.wait,
         'max_distance': 9999,
-        'save_freq': 5
+        'save_freq': 5,
+        'load': False
     },
     'MPLightVAL': {
         'agent': MPLight,
@@ -37,7 +39,8 @@ agent_configs = {
         'EPS_DECAY': 220,
         'TARGET_UPDATE': 500,
         'demand_shape': 1,
-        'save_freq': 5
+        'save_freq': 5,
+        'load': False
     },
     'FMA2CVAL': {
         'agent': FMA2C,
@@ -63,7 +66,8 @@ agent_configs = {
         'batch_size': 120,
         'reward_norm': 2000.0,
         'reward_clip': 2.0,
-        'save_freq': 5
+        'save_freq': 5,
+        'load': False
     },
 
     'STOCHASTIC': {
@@ -71,21 +75,24 @@ agent_configs = {
         'state': states.mplight,
         'reward': rewards.wait,
         'max_distance': 1,
-        'save_freq': 5
+        'save_freq': 5,
+        'load': False
     },
     'MAXWAVE': {
         'agent': MAXWAVE,
         'state': states.wave,
         'reward': rewards.wait,
         'max_distance': 50,
-        'save_freq': 5
+        'save_freq': 5,
+        'load': False
     },
     'MAXPRESSURE': {
         'agent': MAXPRESSURE,
         'state': states.mplight,
         'reward': rewards.wait,
         'max_distance': 200,
-        'save_freq': 5
+        'save_freq': 5,
+        'load': False
     },
     'IDQN': {
         'agent': IDQN,
@@ -98,7 +105,8 @@ agent_configs = {
         'EPS_START': 1.0,
         'EPS_END': 0.0,
         'EPS_DECAY': 220,
-        'TARGET_UPDATE': 500
+        'TARGET_UPDATE': 500,
+        'load': False
     },
     'IPPO': {
         'agent': IPPO,
@@ -119,7 +127,8 @@ agent_configs = {
         'EPS_END': 0.0,
         'EPS_DECAY': 220,
         'TARGET_UPDATE': 500,
-        'demand_shape': 1
+        'demand_shape': 1,
+        'load': False
     },
     'FMA2C': {
         'agent': FMA2C,
@@ -145,6 +154,7 @@ agent_configs = {
         'batch_size': 120,
         'reward_norm': 2000.0,
         'reward_clip': 2.0,
+        'load': False
     },
 
     # *FULL configs extend state space to include obs. available to IDQN
@@ -159,7 +169,8 @@ agent_configs = {
         'EPS_END': 0.0,
         'EPS_DECAY': 220,
         'TARGET_UPDATE': 500,
-        'demand_shape': 4
+        'demand_shape': 4,
+        'load': False
     },
     'FMA2CFULL': {
         'agent': FMA2C,
@@ -185,5 +196,6 @@ agent_configs = {
         'batch_size': 120,
         'reward_norm': 2000.0,
         'reward_clip': 2.0,
+        'load': False
     }
 }
