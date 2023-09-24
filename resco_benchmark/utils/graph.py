@@ -82,6 +82,7 @@ for met_i, metric in enumerate(metrics):
 
                 # Print out performance metric
                 err = metric.get(key + '_yerr')
+                if not err: continue
                 if num_n == -1:
                     last_n_ind = np.argmin(metric[key])
                     last_n = metric[key][last_n_ind]
@@ -108,7 +109,8 @@ for met_i, metric in enumerate(metrics):
                 if alg in statics:
                     plt.plot([avg_tot]*num_episodes, '--', label=alg_name[alg])
                     plt.fill_between([], [], [])      # Advance color cycle
-                elif not('FMA2C' in alg or 'IPPO' in alg):
+                # elif not('FMA2C' in alg or 'IPPO' in alg):
+                else:
                     windowed = []
                     queue = deque(maxlen=window_size)
                     std_q = deque(maxlen=window_size)
@@ -134,14 +136,14 @@ for met_i, metric in enumerate(metrics):
 
                     plt.plot(windowed, label=alg_name[alg])
                     plt.fill_between(x, low, high, alpha=0.4)
-                else:
-                    if alg == 'FMA2C':  # Skip pink in color cycle
-                        plt.plot([], [])
-                        plt.fill_between([], [], [])
-                    x = [num_episodes-1, num_episodes]
-                    y = [last_n]*2
-                    plt.plot(x, y, label=alg_name[alg])
-                    plt.fill_between([], [], [])  # Advance color cycle
+                # else:
+                #     if alg == 'FMA2C':  # Skip pink in color cycle
+                #         plt.plot([], [])
+                #         plt.fill_between([], [], [])
+                #     x = [num_episodes-1, num_episodes]
+                #     y = [last_n]*2
+                #     plt.plot(x, y, label=alg_name[alg])
+                #     plt.fill_between([], [], [])  # Advance color cycle
 
         points = np.asarray([0, 20, 40, 60, 80, 100, num_episodes])
         labels = ('0', '20', '40', '60', '80', '100', str(num_episodes))
@@ -153,7 +155,7 @@ for met_i, metric in enumerate(metrics):
         plt.legend(prop={'size': fs})
         bot, top = plt.ylim()
         if bot < 0: bot = 0
-        plt.ylim(bot, dqn_max)
+        # plt.ylim(bot, dqn_max)
         plt.show()
 
 for alg in chart:
