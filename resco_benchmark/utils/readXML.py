@@ -15,6 +15,7 @@ env_base = '/home/demetere/Projects/mai/traffic-control/tfm-atl/resco_benchmark/
 names = [folder for folder in next(os.walk(log_dir))[1]]
 
 metrics = ['timeLoss', 'duration', 'waitingTime']
+dict_mapping = {'timeLoss': 'delays', 'duration': 'durations', 'waitingTime': 'waiting'}
 
 for metric in metrics:
     output_file = 'avg_{}.py'.format(metric)
@@ -106,7 +107,7 @@ for metric in metrics:
 
     np.set_printoptions(threshold=sys.maxsize)
     with open(output_file, 'w') as out:
-        out.write(metric + ' = {\n')
+        out.write(dict_mapping[metric] + ' = {\n')
         for i, res in enumerate(alg_res):
             out.write("'{}': {},\n".format(alg_name[i], res.tolist()))
         out.write('}')
