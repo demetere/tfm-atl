@@ -15,7 +15,7 @@ def main():
     ap.add_argument("--agent", type=str, default='STOCHASTIC',
                     choices=['STOCHASTIC', 'MAXWAVE', 'MAXPRESSURE', 'IDQN', 'IPPO', 'MPLight', 'MA2C', 'FMA2C',
                              'MPLightFULL', 'FMA2CFull', 'FMA2CVAL'])
-    ap.add_argument("--trials", type=int, default=1)
+    ap.add_argument("--tr", type=int, default=0) # number of tries
     ap.add_argument("--eps", type=int, default=100)
     ap.add_argument("--procs", type=int, default=1)
     ap.add_argument("--map", type=str, default='ingolstadt1',
@@ -26,7 +26,7 @@ def main():
     ap.add_argument("--log_dir", type=str, default='/' + os.path.join(*os.path.dirname(__file__).split('/')[:-1], 'results' + os.sep))
     ap.add_argument("--gui", type=bool, default=False)
     ap.add_argument("--libsumo", type=bool, default=False)
-    ap.add_argument("--tr", type=int, default=0)  # Can't multi-thread with libsumo, provide a trial number
+    ap.add_argument("--trials", type=int, default=1) # Can't multi-thread with libsumo, provide a trial number
     args = ap.parse_args()
 
     if args.libsumo and 'LIBSUMO_AS_TRACI' not in os.environ:
