@@ -6,7 +6,6 @@ import sys
 from resco_benchmark.config.map_config import map_configs
 import matplotlib
 matplotlib.use('TkAgg')
-import matplotlib.pyplot as plt
 
 
 # log_dir = os.path.join(os.path.dirname(os.path.dirname(os.getcwd())), 'results' + os.sep)
@@ -105,12 +104,9 @@ for metric in metrics:
         alg_name.append(run_name+'_yerr')
         alg_res.append(err)
 
-        plt.title(run_name)
-        plt.plot(avg_delays)
-        plt.show()
-
-
     np.set_printoptions(threshold=sys.maxsize)
-    with open(output_file, 'a') as out:
+    with open(output_file, 'w') as out:
+        out.write(metric + ' = {\n')
         for i, res in enumerate(alg_res):
             out.write("'{}': {},\n".format(alg_name[i], res.tolist()))
+        out.write('}')

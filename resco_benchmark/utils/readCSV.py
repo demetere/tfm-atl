@@ -3,7 +3,6 @@ import numpy as np
 import sys
 import matplotlib
 matplotlib.use('TkAgg')
-import matplotlib.pyplot as plt
 
 # log_dir = os.path.join(os.path.dirname(os.path.dirname(os.getcwd())), 'results' + os.sep)
 log_dir = '/home/demetere/Projects/mai/traffic-control/tfm-atl/resco_benchmark/results/'
@@ -71,12 +70,10 @@ for run_name in run_avg:
     alg_name.append(run_name+'_yerr')
     alg_res.append(err)
 
-    plt.title(run_name)
-    plt.plot(avg_delays)
-    plt.show()
-
 
 np.set_printoptions(threshold=sys.maxsize)
-with open(output_file, 'a') as out:
+with open(output_file, 'w') as out:
+    out.write(metric + ' = {\n')
     for i, res in enumerate(alg_res):
         out.write("'{}': {},\n".format(alg_name[i], res.tolist()))
+    out.write('}')
