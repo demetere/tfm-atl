@@ -128,6 +128,7 @@ agent_configs = {
         'EPS_DECAY': 220,
         'TARGET_UPDATE': 500,
         'demand_shape': 1,
+        'save_freq': 5,
         'load': False
     },
     'FMA2C': {
@@ -154,6 +155,7 @@ agent_configs = {
         'batch_size': 120,
         'reward_norm': 2000.0,
         'reward_clip': 2.0,
+        'save_freq': 5,
         'load': False
     },
 
@@ -170,6 +172,7 @@ agent_configs = {
         'EPS_DECAY': 220,
         'TARGET_UPDATE': 500,
         'demand_shape': 4,
+        'save_freq': 5,
         'load': False
     },
     'FMA2CFULL': {
@@ -196,6 +199,7 @@ agent_configs = {
         'batch_size': 120,
         'reward_norm': 2000.0,
         'reward_clip': 2.0,
+        'save_freq': 5,
         'load': False
     }
 }
