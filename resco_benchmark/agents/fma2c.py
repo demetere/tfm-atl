@@ -152,7 +152,7 @@ else:
                     self.workers[agent_id].observe(combine, reward[agent_id], done, info)
 
                 if done:
-                    if info['eps'] % 100 == 0:
+                    if info['eps'] % self.config['save_freq'] == 0:
                         if self.saver is not None:
                             self.saver.save(self.sess, self.config['log_dir'] + 'agent_' + 'checkpoint',
                                             global_step=info['eps'])

@@ -52,11 +52,9 @@ else:
 
                 self.agents[key] = MA2CAgent(config, obs_space, act_space, fp_size, waits_len, 'ma2c'+key + str(thread_number), self.sess)
 
-            if sess is None:
+            if self.saver is None:
                 self.saver = tf.train.Saver(max_to_keep=1)
                 self.sess.run(tf.global_variables_initializer())
-            else:
-                self.saver = None
 
         def fingerprints(self, observation):
             agent_fingerprint = {}
@@ -93,7 +91,7 @@ else:
                 agent.observe(combine, reward[agent_id], done, info)
 
             if done:
-                if info['eps'] % 100 == 0:
+                if info['eps'] % self.config['save_freq'] == 0:
                     if self.saver is not None:
                         self.saver.save(self.sess, self.config['log_dir']+'agent_' + 'checkpoint', global_step=info['eps'])
 
@@ -117,7 +115,6 @@ else:
             n_f = fingerprint_size
             total_step = config['steps']
             model_config = config
-            print(name, n_s, n_a, n_w, n_f)
 
             self.model = MA2CImplementation(n_s, n_a, n_w, n_f, total_step, model_config, name, sess)
 
