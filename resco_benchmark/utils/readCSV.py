@@ -5,9 +5,9 @@ import matplotlib
 matplotlib.use('TkAgg')
 
 # log_dir = os.path.join(os.path.dirname(os.path.dirname(os.getcwd())), 'results' + os.sep)
-log_dir = '/home/demetere/Projects/mai/traffic-control/tfm-atl/resco_benchmark/results/'
+log_dir = f'{os.environ["TFM_RESCO_PWD"]}/results/'
 # env_base = '..'+os.sep+'environments'+os.sep
-env_base = '/home/demetere/Projects/mai/traffic-control/tfm-atl/resco_benchmark/environments/'
+env_base = f'{os.environ["TFM_RESCO_PWD"]}/environments/'
 names = [folder for folder in next(os.walk(log_dir))[1]]
 
 metric = 'queue'
@@ -19,7 +19,7 @@ for name in names:
     print(split_name)
     map_name = split_name[2]
     average_per_episode = []
-    for i in range(1, 10000):
+    for i in range(1, 100000):
         trip_file_name = log_dir+name + os.sep + 'metrics_'+str(i)+'.csv'
         if not os.path.exists(trip_file_name):
             print('No '+trip_file_name)
