@@ -1,33 +1,19 @@
 export LIBSUMO_AS_TRACI=1
+export TFM_RESCO_PWD=~/Projects/mai/traffic-control/tfm-atl/resco_benchmark
+export TFM_RESCO_LOG_DIR=~/Projects/mai/traffic-control/tfm-atl/resco_benchmark/results/
 
-python main.py \
-    --agent STOCHASTIC \
-    --map vake \
-    --eps 100 \
-    --libsumo 1 \
-    --pwd ~/Projects/mai/traffic-control/tfm-atl/resco_benchmark \
-    --log_dir ~/Projects/mai/traffic-control/tfm-atl/resco_benchmark/results/
 
-# python main.py \
-#     --agent MAXWAVE \
-#     --map vake \
-#     --eps 100 \
-#     --libsumo 1 \
-#     --pwd ~/Projects/mai/traffic-control/tfm-atl/resco_benchmark \
-#     --log_dir ~/Projects/mai/traffic-control/tfm-atl/resco_benchmark/results/
+export TFM_RESCO_EPS=5
+TFM_RESCO_TR=1
 
-# python main.py \
-#     --agent MAXPRESSURE \
-#     --map vake \
-#     --eps 100 \
-#     --libsumo 1 \
-#     --pwd ~/Projects/mai/traffic-control/tfm-atl/resco_benchmark \
-#     --log_dir ~/Projects/mai/traffic-control/tfm-atl/resco_benchmark/results/
+# HOW TO RUN: train/train.sh AGENT TRIES
 
-# python main.py \
-#     --agent IDQN \
-#     --map cologne3 \
-#     --eps 2 \
-#     --libsumo 1 \
-#     --pwd ~/Projects/mai/traffic-control/tfm-atl/resco_benchmark \
-#     --log_dir ~/Projects/mai/traffic-control/tfm-atl/resco_benchmark/results/
+# train/train.sh STOCHASTIC 1
+# train/train.sh MAXWAVE 1
+# train/train.sh MAXPRESSURE 1
+# train/train.sh IDQN $TFM_RESCO_TR
+# train/train.sh IPPO $TFM_RESCO_TR
+# train/train.sh MPLIGHT $TFM_RESCO_TR
+# train/train.sh MPLIGHTFULL $TFM_RESCO_TR
+# train/train.sh FMA2C $TFM_RESCO_TR
+# train/train.sh FMA2CFULL $TFM_RESCO_TR
