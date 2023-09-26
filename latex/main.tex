@@ -1,0 +1,75 @@
+\documentclass{report}
+
+\usepackage[english]{babel}
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+\usepackage{pdfpages}
+\usepackage{caption}
+
+% Packages for Algorithms
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+
+% Useful packages
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{amssymb}
+\usepackage{multirow}
+
+% Numbering Tables and Figures
+\usepackage{chngcntr} 
+\counterwithout{figure}{chapter}
+\counterwithout{table}{chapter}
+\counterwithout{equation}{chapter}
+
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+\usepackage{cleveref}
+\crefformat{figure}{Figure #2#1#3}
+\Crefformat{figure}{Figure #2#1#3}
+% Set the label name for figures
+\Crefname{figure}{Figure}{Figures}
+
+
+% Chapter Formatting
+\usepackage{titlesec}
+\titleformat{\chapter}{\normalfont\huge\bfseries}{\thechapter.}{20pt}{\Huge}
+
+% Package for indent
+\usepackage{indentfirst}
+
+% Package for footnote
+\usepackage{footmisc}
+\counterwithout{footnote}{chapter}
+
+\begin{document}
+
+\includepdf{images/cover.pdf}
+\include{chapters/abstract}
+
+\clearpage
+\setcounter{page}{1}
+
+\tableofcontents
+% \listoffigures
+\include{chapters/introduction}
+\include{chapters/background}
+\include{chapters/sot}
+\include{chapters/methodology}
+\include{chapters/experiments}
+\include{chapters/comparison}
+\include{chapters/conclusions}
+\include{chapters/future_work}
+
+
+\newpage
+% \addcontentsline{toc}{chapter}{Bibliography}
+\clearpage % Insert a page break before the References section
+\phantomsection % Ensure correct hyperlinks in the PDF
+\addcontentsline{toc}{chapter}{References} % Add "References" to 
+
+\bibliographystyle{apalike}
+% \bibliographystyle{plain}
+\renewcommand\bibname{References}
+\bibliography{cites}
+\end{document}

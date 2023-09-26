@@ -10,15 +10,15 @@ export TFM_RESCO_TR=2
 TRIES_COUNTER=0
 while [ $TRIES_COUNTER -le $((TFM_RESCO_TR - 1)) ]
 do
-    train/train.sh STOCHASTIC $TRIES_COUNTER
-    train/train.sh MAXWAVE $TRIES_COUNTER
-    train/train.sh MAXPRESSURE $TRIES_COUNTER
-    train/train.sh IDQN $TRIES_COUNTER
-    train/train.sh IPPO $TRIES_COUNTER
-    train/train.sh MPLIGHT $TRIES_COUNTER
-    train/train.sh MPLIGHTFULL $TRIES_COUNTER
-    train/train.sh FMA2C $TRIES_COUNTER
-    train/train.sh FMA2CFULL $TRIES_COUNTER
+    # train/train.sh STOCHASTIC $TRIES_COUNTER
+    # train/train.sh MAXWAVE $TRIES_COUNTER
+    # train/train.sh MAXPRESSURE $TRIES_COUNTER
+    # train/train.sh IDQN $TRIES_COUNTER
+    # train/train.sh IPPO $TRIES_COUNTER
+    # train/train.sh MPLIGHT $TRIES_COUNTER
+    # train/train.sh MPLIGHTFULL $TRIES_COUNTER
+    # train/train.sh FMA2C $TRIES_COUNTER
+    # train/train.sh FMA2CFULL $TRIES_COUNTER
     echo "RUN $((++TRIES_COUNTER))/$TFM_RESCO_TR FINISHED"
 done
 

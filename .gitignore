@@ -130,3 +130,12 @@ dmypy.json
 
 .vscode
 results
+
+**/*.aux
+**/*.blg
+**/*.bbl
+**/*.fdb_latexmk
+**/*.fls
+**/*.toc
+**/*.gz
+**/*.out
