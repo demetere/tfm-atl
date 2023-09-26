@@ -1,6 +1,6 @@
 #!/bin/bash
-AGENT=$2
-TRY=$1
+AGENT=$1
+TRY=$2
 
 cd utils
 
