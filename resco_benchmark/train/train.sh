@@ -11,4 +11,4 @@ python main.py \
     --pwd $TFM_RESCO_PWD \
     --log_dir $TFM_RESCO_LOG_DIR
 
-train/analyses.sh $AGENT_NAME
+train/analyses.sh $TRIES $AGENT_NAME
