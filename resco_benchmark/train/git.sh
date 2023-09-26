@@ -1,6 +1,6 @@
 #/bin/bash
-TRY=$1
-AGENT=$2
+AGENT=$1
+TRY=$2
 
 git pull
 git add --ignore-errors utils/*

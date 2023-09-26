@@ -12,9 +12,9 @@ TRIES_COUNTER=0
 while [ $TRIES_COUNTER -le $((TFM_RESCO_TR - 1)) ]
 do
     if [ $TRIES_COUNTER -ne 0 ]; then # Because we already ran one run
-#        train/train.sh STOCHASTIC $TRIES_COUNTER
-        echo "Now Running"
+        train/train.sh STOCHASTIC $TRIES_COUNTER
     fi
+
     train/train.sh MAXWAVE $TRIES_COUNTER
     train/train.sh MAXPRESSURE $TRIES_COUNTER
     train/train.sh IDQN $TRIES_COUNTER

@@ -1,6 +1,6 @@
 #!/bin/bash
-TRY=$1
 AGENT=$2
+TRY=$1
 
 cd utils
 
@@ -10,5 +10,5 @@ python readXML.py
 cd ../
 
 # commit
-train/git.sh $TRY $AGENT
+train/git.sh $AGENT $TRY
 
