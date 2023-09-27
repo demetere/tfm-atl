@@ -1,0 +1,59 @@
+\chapter{Related Work}
+\section{Reinforced Signal Control (RESCO)}
+In this section, we review related work in the field of traffic signal control, with a focus on the Reinforced Signal Control (RESCO) toolkit, which serves as a baseline for our research.
+
+The RESCO toolkit is a standard Reinforcement Learning (RL) traffic signal control testbed designed to achieve several key objectives:
+
+\begin{enumerate}
+    \item Provide benchmark single and multi-agent signal control tasks based on well-established traffic scenarios.
+    \item Offer an OpenAI GYM interface within the testbed environment to facilitate the deployment of state-of-the-art RL algorithms.
+    \item Deliver a standardized implementation of state-of-the-art RL-based signal control algorithms.
+\end{enumerate}
+
+RESCO is open-source and freely available under the GNU General Public License 3. It is built on top of SUMO-RL \cite{alegre2019sumo-rl} and can be accessed on GitHub at \url{github.com/Pi-Star-Lab/RESCO}. The embedded traffic scenarios within RESCO have their own licensing, with Cologne-based scenarios under Creative Commons BY-NC-SA and Ingolstadt-based scenarios under the GNU General Public License 3.
+
+\subsubsection{State and Action Space}
+
+RESCO accommodates a wide range of sensing assumptions, including advanced sensing capabilities \cite{codeca2018monaco}. Users can select subsets of state features based on specific sensing assumptions. Features include information such as stopped vehicles' queue length, the number of approaching vehicles, total waiting time for stopped vehicles, and more, at the level of state, intersection, and lane. Additionally, users can define the effective sensing distance during initialization.
+
+The action space in RESCO encompasses sets of non-conflicting phase combinations, following the methodology described in Section 2.2 of the RESCO documentation \cite{codeca2018monaco}. By default, actions are chosen for the next 10 seconds of simulation, with the first 3 seconds reserved for yellow signals, if necessary.
+
+\subsubsection{Reward Metrics}
+
+RESCO offers flexibility in terms of reward metrics. Users can designate any of the reward metrics defined in Section 2.2 of the RESCO documentation\cite{codeca2018monaco} or create custom weighted combinations of these metrics. When initializing a control task, users can pass a weight vector that assigns weights to different metrics in the reward function. These weights correspond to various aspects, such as system travel time, signal-induced delays, total waiting time at intersections, average queue length, and traffic pressure.
+
+\subsubsection{Benchmark Control Tasks}
+
+The signal control benchmark tasks in RESCO are based on two well-established SUMO scenarios: "TAPAS Cologne" and "InTAS" \cite{pham2013learning, lobo2020intas}. These scenarios represent traffic within real-world cities, namely, Cologne and Ingolstadt in Germany. They include road network layouts and calibrated demands, making them suitable for comprehensive evaluation. RESCO defines three benchmark control tasks for each traffic scenario:
+
+\begin{enumerate}
+    \item Controlling a single main intersection.
+    \item Coordinated control of multiple intersections along an arterial corridor.
+    \item Coordinated control of multiple intersections within a congested area (downtown).
+\end{enumerate}
+
+\subsubsection{Benchmark Algorithms}
+
+RESCO provides three baseline controllers and several RL-based controllers for comparative evaluation:
+
+\begin{enumerate}
+    \item \textbf{Baseline Controllers}:
+    \begin{enumerate}
+        \item Fixed-time (Pre-timed) control, where phase combinations are enabled for fixed durations following predefined cycles.
+        \item Max-pressure control, which selects the phase combination with the maximum joint pressure. \cite{chen2020toward}
+        \item Greedy control, which chooses the phase combination with the maximum joint queue length and approaching vehicle count.\cite{ma2020feudal}
+    \end{enumerate}
+    
+    \item \textbf{RL Controllers}:
+    \begin{enumerate}
+        \item IDQN (Independent DQN agents), employing convolutional layers for lane aggregation\cite{ault2020learning}.
+        \item IPPO, which utilizes a deep neural network similar to IDQN\cite{ault2020learning}.
+        \item MPLight, based on the FRAP open-source implementation, ChainerRL DQN, and pressure sensing\cite{zheng2019learning}.
+        \item Extended MPLight (MPLight*), an enhanced version of MPLight with additional sensing information.
+        \item FMA2C, built on top of the MA2C open-source implementation\cite{chu2019multi}.
+    \end{enumerate}
+\end{enumerate}
+
+In each of the RL-based controllers, specific learning algorithms and hyperparameters are applied, allowing for a comprehensive evaluation of their performance \cite{ault2020learning, chen2020toward, chu2019multi, ma2020feudal, zheng2019learning}.
+
+
