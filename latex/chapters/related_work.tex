@@ -39,7 +39,7 @@ RESCO provides three baseline controllers and several RL-based controllers for c
 \begin{enumerate}
     \item \textbf{Baseline Controllers}:
     \begin{enumerate}
-        \item Fixed-time (Pre-timed) control, where phase combinations are enabled for fixed durations following predefined cycles.
+        \item Fixed-time (Pre-timed) control, where phase combinations are enabled for fixed durations following predefined cycles, that was recorded physically from the real-world traffic signal controller.
         \item Max-pressure control, which selects the phase combination with the maximum joint pressure. \cite{chen2020toward}
         \item Greedy control, which chooses the phase combination with the maximum joint queue length and approaching vehicle count.\cite{ma2020feudal}
     \end{enumerate}
@@ -48,7 +48,7 @@ RESCO provides three baseline controllers and several RL-based controllers for c
     \begin{enumerate}
         \item IDQN (Independent DQN agents), employing convolutional layers for lane aggregation\cite{ault2020learning}.
         \item IPPO, which utilizes a deep neural network similar to IDQN\cite{ault2020learning}.
-        \item MPLight, based on the FRAP open-source implementation, ChainerRL DQN, and pressure sensing\cite{zheng2019learning}.
+        \item MPLight, based on the FRAP open-source implementation, ChainerRL DQN\cite{ChainerRL}, and pressure sensing\cite{zheng2019learning}.
         \item Extended MPLight (MPLight*), an enhanced version of MPLight with additional sensing information.
         \item FMA2C, built on top of the MA2C open-source implementation\cite{chu2019multi}.
     \end{enumerate}
@@ -56,4 +56,5 @@ RESCO provides three baseline controllers and several RL-based controllers for c
 
 In each of the RL-based controllers, specific learning algorithms and hyperparameters are applied, allowing for a comprehensive evaluation of their performance \cite{ault2020learning, chen2020toward, chu2019multi, ma2020feudal, zheng2019learning}.
 
+In the case of IDQN, IPPO, and MPLight, the implementation of the learning algorithm is invoked directly from the ChainerRL \cite{ChainerRL} and the Preferred RL \cite{PFRL} libraries that is successor of ChainerRL, and customized to align with our specific map and requirements.
 

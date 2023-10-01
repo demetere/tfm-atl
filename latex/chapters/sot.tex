@@ -1,1 +1,184 @@
 \chapter{State of the Art}
+\section{IDQN}\label{sec:IDQN}
+Reinforcement Learning (RL) is a prominent area of machine learning where agents learn to make sequential decisions by interacting with an environment. DQN, short for Deep Q-Network, is a fundamental algorithm in RL that leverages deep neural networks to approximate optimal action-value functions.
+
+\subsection{Deep Q-Network (DQN)}
+
+DQN, proposed by Mnih et al. \cite{mnih2015human}, is designed to address the challenges of learning Q-values in high-dimensional state spaces. It combines Q-learning, a well-established RL algorithm, with deep neural networks.
+
+The Q-value, denoted as \(Q(s, a)\), represents the expected cumulative reward when taking action \(a\) in state \(s\). DQN approximates this Q-value using a deep neural network with parameters \(\theta\). The Q-network is trained to minimize the temporal difference (TD) error:
+
+\[
+\delta = Q(s, a;\theta) - (r + \gamma \max_{a'} Q(s', a';\theta^-))
+\]
+
+Where:
+\begin{align*}
+    &\delta \text{ - TD error}\\
+    &Q(s, a;\theta) \text{ - Q-value predicted by the network}\\
+    &r \text{ - Immediate reward}\\
+    &\gamma \text{ - Discount factor}\\
+    &Q(s', a';\theta^-) \text{ - Target Q-value predicted by a target network with parameters }\theta^-
+\end{align*}
+
+DQN employs experience replay and a target network to stabilize training. Experience replay stores past experiences in a replay buffer and samples mini-batches for training, breaking the temporal correlation in the data. The target network provides stable target Q-values for the TD error.
+
+\subsection{Independent Deep Q-Networks (IDQN)}
+
+IDQN is an extension of DQN tailored for multi-agent RL scenarios, where multiple agents operate independently to optimize their actions. Each agent in IDQN maintains its own Q-network and replay buffer.
+
+The Q-value update rule in IDQN remains similar to DQN, but it is extended to accommodate multiple agents:
+
+\[
+\delta = Q_i(s, a_i;\theta_i) - (r + \gamma \max_{a'} Q_i(s', a';\theta^-))
+\]
+
+Where:
+\begin{align*}
+    &\delta \text{ - TD error for agent } i\\
+    &Q_i(s, a_i;\theta_i) \text{ - Q-value predicted by agent } i's \text{ network}\\
+    &r \text{ - Immediate reward}\\
+    &\gamma \text{ - Discount factor}\\
+    &Q_i(s', a';\theta^-) \text{ - Target Q-value predicted by agent } i's \text{ target network}
+\end{align*}
+
+IDQN facilitates decentralized decision-making among multiple agents, making it suitable for scenarios involving cooperation or competition among agents.
+
+
+To explore IDQN in more detail, the following paper\cite{ault2020learning} provide comprehensive insights into its theory and applications
+
+\section{IPPO}\label{sec:IPPO}
+Proximal Policy Optimization (PPO) is a state-of-the-art reinforcement learning algorithm designed for optimizing parameterized policies in complex environments. IPPO, short for Independent Proximal Policy Optimization, is an extension of PPO tailored for multi-agent reinforcement learning scenarios, where multiple agents learn independently.
+
+\subsection{Proximal Policy Optimization (PPO)}
+
+Introduced by Schulman et al. \cite{schulman2017proximal}, PPO addresses several challenges in policy optimization. It aims to maximize the expected cumulative reward while ensuring that policy updates are not too large, preventing catastrophic policy changes. PPO achieves this through the following objectives:
+
+\subsubsection{Objective Function}
+
+PPO optimizes a surrogate objective function that balances the trade-off between policy improvement and policy constraint. The objective function is given as:
+
+\[
+\mathcal{L}(\theta) = \mathbb{E}\left[\min\left(r_t(\theta)\hat{A}_t, \text{clip}\left(r_t(\theta), 1-\epsilon, 1+\epsilon\right)\hat{A}_t\right)\right]
+\]
+
+Where:
+\begin{align*}
+    &\mathcal{L}(\theta) \text{ - Surrogate objective function}\\
+    &\theta \text{ - Policy parameters}\\
+    &r_t(\theta) = \frac{\pi_{\theta}(a_t|s_t)}{\pi_{\theta_{\text{old}}}(a_t|s_t)} \text{ - Importance ratio}\\
+    &\hat{A}_t \text{ - Advantage estimate}\\
+    &\epsilon \text{ - Clip parameter}
+\end{align*}
+
+PPO optimizes this objective function using stochastic gradient ascent.
+
+\subsubsection{Trust Region}
+
+PPO introduces a trust region constraint by clipping the surrogate objective. The clip function ensures that policy updates do not deviate significantly from the previous policy:
+
+\[
+\text{clip}(x, a, b) = \begin{cases}
+    x, & \text{if } x \in [a, b]\\
+    a, & \text{if } x < a\\
+    b, & \text{if } x > b
+\end{cases}
+\]
+
+PPO efficiently balances policy updates to ensure stability and improved performance.
+
+\subsection{Independent Proximal Policy Optimization (IPPO)}
+
+IPPO extends the PPO algorithm for multi-agent RL scenarios, where multiple agents learn independently. Each agent in IPPO maintains its own policy and operates in the environment. IPPO's objective function for agent \(i\) remains similar to PPO:
+
+\[
+\mathcal{L}_i(\theta_i) = \mathbb{E}\left[\min\left(r_t(\theta_i)\hat{A}_t^i, \text{clip}\left(r_t(\theta_i), 1-\epsilon, 1+\epsilon\right)\hat{A}_t^i\right)\right]
+\]
+
+Where:
+\begin{align*}
+    &\mathcal{L}_i(\theta_i) \text{ - Surrogate objective function for agent } i\\
+    &\theta_i \text{ - Policy parameters for agent } i\\
+    &r_t(\theta_i) = \frac{\pi_{\theta_i}(a_t^i|s_t)}{\pi_{\theta_{i_{\text{old}}}}(a_t^i|s_t)} \text{ - Importance ratio for agent } i\\
+    &\hat{A}_t^i \text{ - Advantage estimate for agent } i
+\end{align*}
+
+IPPO facilitates decentralized learning among multiple agents, making it suitable for scenarios involving independent agents with their policies.
+
+
+To explore IPPO in more detail, the following paper\cite{ault2020learning} provide comprehensive insights into its theory and applications
+
+
+\section{MPLight}\label{sec:MPLight}
+MPLight\cite{chen2020toward} is a traffic light control system that utilizes the concept of pressure to coordinate multiple intersections efficiently. It operates by considering the pressure, which is the difference in queue lengths from incoming lanes of an intersection and the queue length on a downstream intersection's receiving lane. MPLight is designed to optimize traffic flow and reduce congestion in urban environments.
+
+In MPLight, pressure serves as a critical metric for traffic signal coordination. It is calculated as the difference between the queue lengths of vehicles waiting to enter an intersection and the queue length on the downstream intersection's receiving lane. By considering pressure, MPLight aims to balance the traffic load across multiple intersections.
+
+Chen et al. introduced MPLight as an approach to traffic light control that leverages reinforcement learning techniques. They utilized Deep Q-Networks (DQN) as the underlying framework for making traffic signal decisions. In this setup, a DQN agent is shared across all intersections.
+
+In MPLight, pressure is not only used as a coordination metric but also as both the state and reward for the DQN agent. The state of the agent at a given time step includes information about the pressure values for all relevant intersections. The reward signal is derived from pressure differences and is used to guide the learning process of the DQN agent.
+
+Chen et al.\cite{chen2020toward} reported significant improvements in traffic flow and travel times when implementing MPLight compared to existing methods. Specifically, MPLight achieved up to a 19.2\% improvement in travel times over the next best compared method, PressLight.
+
+\section{FMA2C}\label{sec:FMA2C}
+
+FMA2C\cite{chu2019multi} is an advanced approach to traffic signal control that utilizes a hierarchical framework to optimize traffic flow in urban environments. It builds upon the prior work of MA2C (Multi-Agent Advantage Actor-Critic) by introducing managing agents to coordinate and oversee workers responsible for signal control at intersections.
+
+\subsection{Basic Concepts}
+
+\subsubsection{Workers (Intersection-Level Agents)}
+
+In FMA2C, the core agents responsible for signal control at intersections are called workers. Each worker operates independently as an advantage actor-critic agent. The workers are tasked with making real-time decisions regarding traffic signal timings at their respective intersections.
+
+\subsubsection{Managing Agents (Region-Level Agents)}
+
+FMA2C introduces managing agents, which operate at a higher level of hierarchy compared to workers. Each managing agent is responsible for a specific region or area within the traffic network. These managing agents oversee multiple workers and have the responsibility of optimizing traffic flow within their assigned regions.
+
+\subsection{Hierarchical Reinforcement Learning}
+
+FMA2C leverages hierarchical reinforcement learning to improve traffic signal coordination. The hierarchy involves two levels: managing agents at the top level and workers at the lower level.
+
+\subsubsection{Managing Agent Training}
+
+Managing agents are trained to optimize traffic flow within their assigned regions. They receive high-level traffic-related goals and objectives, such as minimizing congestion or maximizing traffic throughput. The managing agents use these goals to make region-level decisions.
+
+The training of managing agents can be formulated as a reinforcement learning problem, where the managing agent learns a policy \(\pi_m\) to maximize a region-specific objective function:
+
+\[
+J_m(\pi_m) = \mathbb{E}\left[\sum_{t=0}^{\infty} \gamma^t R_t^m\right]
+\]
+
+Where:
+\begin{align*}
+    &J_m(\pi_m) \text{ - Expected cumulative reward for managing agent } m\\
+    &\pi_m \text{ - Policy of managing agent } m\\
+    &\gamma \text{ - Discount factor}\\
+    &R_t^m \text{ - Region-specific reward at time step } t
+\end{align*}
+
+\subsubsection{Worker Training}
+
+Workers, on the other hand, are trained to incorporate the high-level goals set by their respective managing agents into their local decision-making process. This hierarchical training ensures that workers align their actions with the broader objectives of traffic flow optimization.
+
+The training of workers also involves reinforcement learning, where each worker learns a policy \(\pi_w\) to maximize its intersection-specific objective function:
+
+\[
+J_w(\pi_w) = \mathbb{E}\left[\sum_{t=0}^{\infty} \gamma^t R_t^w\right]
+\]
+
+Where:
+\begin{align*}
+    &J_w(\pi_w) \text{ - Expected cumulative reward for worker } w\\
+    &\pi_w \text{ - Policy of worker } w\\
+    &\gamma \text{ - Discount factor}\\
+    &R_t^w \text{ - Intersection-specific reward at time step } t
+\end{align*}
+
+\subsection{Coordination Mechanisms}
+
+FMA2C employs various coordination mechanisms between managing agents and workers to ensure effective traffic signal control. These mechanisms may include communication of high-level goals, reward sharing, and coordination through a central mechanism.
+
+\subsection{Performance Improvement}
+
+FMA2C aims to improve traffic flow and reduce congestion by introducing a hierarchical framework that allows for coordinated decision-making at both the region and intersection levels. By aligning the actions of workers with the goals of managing agents, FMA2C seeks to optimize traffic signal timings efficiently.
+

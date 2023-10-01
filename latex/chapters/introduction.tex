@@ -7,7 +7,52 @@ Recent technological advancements have introduced the Adaptive Traffic Signal Co
 
 This thesis aims to address these challenges by proposing a Traffic Control System based on reinforcement learning (RL), an artificial intelligence framework that learns optimal decision policies through continuous adaptation to real-time traffic scenarios. By moving away from fixed-time schedules and incorporating RL, we seek to develop an intelligent traffic control system that efficiently manages traffic flow, reduces environmental impact, such as air pollution and fuel wastage, and enhances road safety \cite{mousavi2017traffic}. The research focuses on a 4-way intersection, analyzing incoming traffic density to optimize traffic signal control and improve overall transportation efficiency over time.
 
+% Motivation Section
 \section{Motivation}
-My personal motivation for undertaking this thesis is deeply rooted in the traffic problems I have witnessed in my home country, Georgia. The congestion and inefficiency of traffic lights on some of the busiest streets in Georgia have long been a source of frustration for me and my fellow citizens. The resulting traffic jams not only waste valuable time but also contribute to environmental issues such as increased air pollution and fuel wastage. Additionally, the risk of accidents rises as traffic congestion worsens.
+My personal motivation for embarking on this thesis is deeply rooted in the persistent traffic problems that afflict my home country, Georgia. The congestion and inefficiency of traffic lights on some of the busiest streets in Georgia have long been a source of frustration for me and my fellow citizens. The resulting traffic jams not only waste valuable time but also contribute to environmental issues such as increased air pollution and fuel wastage. Moreover, the heightened risk of accidents in congested traffic conditions underscores the urgency of finding effective solutions.
 
-Driven by these challenges, I have chosen to focus on optimizing traffic light control, specifically targeting one of the busiest streets in Georgia, as the subject of my thesis. By harnessing the power of reinforcement learning, I aim to develop an intelligent traffic control system capable of dynamically managing traffic flows, reducing congestion, and addressing environmental concerns. Through this research, I aspire to contribute to more efficient and sustainable urban transportation systems, not only in Georgia but also as a model for cities worldwide.
+Beyond my personal experiences, the global need for intelligent traffic control systems has never been more evident. Rapid urbanization and population growth have placed an ever-increasing burden on urban transportation infrastructure. As cities around the world grapple with the challenges posed by burgeoning traffic volumes, there is a pressing demand for innovative and adaptive solutions.
+
+In this context, my motivation converges with a broader societal need for intelligent traffic light systems. These systems have the potential to revolutionize urban transportation by dynamically managing traffic flows, reducing congestion, and mitigating environmental concerns. By harnessing the power of reinforcement learning and artificial intelligence, I aim to contribute to the development of intelligent traffic control systems that can serve as a model for cities worldwide.
+
+Through this research endeavor, I aspire to make a meaningful impact by fostering more efficient and sustainable urban transportation systems. By optimizing traffic light control, I seek not only to alleviate the traffic woes in my homeland but also to offer a scalable solution that addresses the global imperative for intelligent traffic management.
+
+
+% Objectives Section
+\section{Objectives}
+The primary objectives of this thesis encompass a comprehensive investigation into optimizing urban traffic flow through a multi-faceted approach. These objectives are designed to address the complexities of traffic management, improve realism in simulations, and assess the performance of cutting-edge algorithms and baseline controllers. The key objectives are as follows:
+
+\subsection{Creation of Vake Map in SUMO}
+The first objective is to develop a complex and representative urban traffic simulation environment within the Simulation of Urban MObility (SUMO) framework. This entails the creation of a detailed Vake map, capturing the intricacies of traffic infrastructure, including road networks, intersections, and traffic lanes. The map should accurately reflect the real-world urban environment under investigation.
+
+\subsection{Generation of Realistic Traffic Patterns}
+To enhance the realism of the simulations, real-world traffic patterns are essential. This objective involves collecting real-time traffic data from the chosen location and meticulously recording the timing and behavior of traffic lights. The gathered data will then be integrated into the simulation environment to replicate actual traffic conditions.
+
+\subsection{Utilization of State-of-the-Art Algorithms}
+The core of this research lies in the exploration, implementation and adaptation of state-of-the-art traffic signal control algorithms. The following algorithms will be employed:
+
+\begin{itemize}
+  \item \textbf{IDQN}: Implementing this deep reinforcement learning algorithm for traffic signal control, which has shown promise in optimizing signal timings.
+  
+  \item \textbf{IPPO}: Utilizing IPPO as another reinforcement learning algorithm to investigate its effectiveness in traffic management.
+  
+  \item \textbf{MPLIGHT}: Exploring MPLIGHT, a multi-phase control algorithm designed to adapt traffic signals dynamically.
+  
+  \item \textbf{FMA2C}: Investigating the potential of FMA2C for cooperative multi-agent traffic signal control.
+\end{itemize}
+
+\subsection{Comparison with Baseline Controllers}
+To evaluate the performance of the selected state-of-the-art algorithms, this objective involves implementing and assessing the following baseline controllers:
+
+\begin{itemize}
+  \item \textbf{Fixed Time Control}: A traditional control strategy with fixed signal timings that do not adapt to real-time traffic conditions.
+  
+  \item \textbf{Max-Pressure Control}: Implementing this controller, which focuses on minimizing congestion by prioritizing the most congested lanes at intersections.
+  
+  \item \textbf{Greedy Control}: Assessing the performance of a basic greedy controller that makes decisions based on immediate traffic conditions.
+\end{itemize}
+
+\subsection{Comparative Analysis and Conclusions}
+Upon completing the simulations and experiments, the results from the various traffic signal control algorithms and baseline controllers will be rigorously analyzed and compared. The objective is to draw meaningful conclusions regarding the effectiveness of each approach in optimizing urban traffic flow. The research aims to provide insights into the potential for intelligent traffic management systems to alleviate congestion, improve efficiency, and reduce environmental impacts.
+
+By achieving these objectives, this thesis seeks to contribute valuable knowledge to the field of urban traffic optimization and provide practical recommendations for enhancing traffic signal control systems in real-world urban settings.
