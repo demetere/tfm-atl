@@ -1,1 +1,190 @@
 \chapter{Experiments}
+In this chapter, we embark on a journey of experimentation and evaluation. Our primary objective is to conduct a comprehensive assessment of the various controllers and reinforcement learning (RL) algorithms employed in our study. To achieve this, we will provide insights into the rewards and states representations used for each controller. Additionally, we will present the results obtained from running these controllers through simulations. It's worth noting that each RL controller underwent two separate runs, each comprising 1500 episodes.
+
+\section{States and Reward Representation}
+In this section, we delve into the details of the state and reward representations used across our controllers. Understanding these representations is vital as they form the foundation upon which our RL-based traffic light control strategies are built.
+
+\subsection{States}
+\subsubsection{State 1} \label{subsec:state-1}
+State 1 encompasses the following observable states:
+
+\begin{enumerate}
+    \item Total approach
+    \item Total wait
+    \item Total queue
+    \item Total speed
+\end{enumerate}
+
+\subsubsection{State 2} \label{subsec:state-2}
+State 2 represents a normalized version of \hyperref[subsec:state-1]{State 1}.
+
+\subsubsection{State 3} \label{subsec:state-3}
+State 3 consists of a single observable attribute, namely queue length.
+
+\subsubsection{State 4} \label{subsec:state-4}
+In State 4, we incorporate the following values:
+\begin{enumerate}
+    \item Total queue
+    \item Normalized total wait
+    \item Total speed
+    \item Normalized total approach
+\end{enumerate}
+
+\subsubsection{State 5} \label{subsec:state-5}
+State 5, known as "Wave," represents the sum of queue length and approach, providing insights into traffic wave dynamics.
+
+\subsubsection{State 6} \label{subsec:state-6}
+State 6 is specifically tailored for the FMA2C agent and includes state parameters such as approach and queue, accommodating specific hyperparameters.
+
+\subsubsection{State 7} \label{subsec:state-7}
+Expanding on \hyperref[subsec:state-6]{State 6}, State 7 introduces additional parameters to the state representation, encompassing total wait time, the number of vehicles, and speed.
+
+\subsection{Rewards}
+\subsubsection{Reward 1} \label{subsec:reward-1}
+Reward 1 is defined as the negative total wait time, serving as a straightforward reward mechanism.
+
+\begin{equation}
+    \text{Reward}(s) = -\sum_{\text{lane in signal}} \text{wait\_time}(s_{\text{lane}})
+\end{equation}
+
+\subsubsection{Reward 2} \label{subsec:reward-2}
+Reward 2 is a normalized variant of \hyperref[subsec:reward-1]{Reward 1}, providing scaled rewards.
+
+\subsubsection{Reward 3} \label{subsec:reward-3}
+Termed as "Pressure reward," Reward 3 is represented by the negative queue length, promoting efficient traffic flow.
+
+\begin{equation}
+    \text{Reward}(s) = -\sum_{\text{lane in signal}} \text{queue\_length}(s_{\text{lane}})
+\end{equation}
+
+\subsubsection{Reward 4} \label{subsec:reward-4}
+Reward 4 is designed specifically for FMA2C due to its multi-agent nature. It combines departures, arrivals, the number of vehicles, queue length, and maximum wait time. The formula used for calculating the reward is as follows:
+
+\begin{equation}
+    \text{Reward}(s) = -\sum_{\text{lane in signal}} \text{queue}(s_{\text{lane}}) - \text{coef} \times \sum_{\text{lane in signal}} \text{max\_wait}(s_{\text{lane}})
+\end{equation}
+    
+Where:
+\begin{align*}
+\text{Reward}(s) & : \text{The total reward for the current state } s. \\
+\text{lane} & : \text{An individual lane in the signal.} \\
+\text{queue}(s_{\text{lane}}) & : \text{The queue length in lane } s_{\text{lane}}. \\
+\text{coef} & : \text{A coefficient defined in the configuration.} \\
+\text{max\_wait}(s_{\text{lane}}) & : \text{The maximum wait time in lane } s_{\text{lane}}. \\
+\end{align*}
+    
+This formula represents the reward calculation in your code, where you sum the negative queue lengths and the product of the maximum wait times and the coefficient for each lane in the signal. The resulting reward is negative because you subtract it from zero.
+
+    
+\subsubsection{Reward 5} \label{subsec:reward-5}
+Reward 5 is tailored for FMA2CFull, another multi-agent system. Similar to \hyperref[subsec:reward-4]{Reward 4} with just change of coefficients and its values
+
+With a clear understanding of the states and reward representations, we can now proceed to examine each controller and their respective results.
+
+    
+\section{Fixed Time}
+In the Fixed Time Controller, we employ a rudimentary approach where traffic light phases are pre-determined and follow a fixed timing schedule. Unlike our RL-based controllers, this baseline controller operates without any state or reward representation because it adheres strictly to predetermined timing intervals. Consequently, there is no dynamic adjustment of traffic lights based on real-time traffic conditions.
+
+The Fixed Time Controller's results provide us with a benchmark against which we can compare the performance of our RL-based controllers. These results encompass various metrics, including but not limited to average delay, average wait time, average queue length, and average trip time. These metrics are crucial for assessing the effectiveness of more sophisticated traffic light control strategies.
+
+\subsection{Results}
+Empty
+
+\section{Stochastic}
+The Stochastic Controller is a straightforward baseline where traffic light phases are selected randomly without any intelligent decision-making process. This controller serves as a simple reference point to evaluate how well our RL-based models perform compared to random traffic light control.
+
+The results from the Stochastic Controller experiment offer insights into the outcomes of randomly selecting traffic phases. By comparing these results with those of our RL-based controllers, we can assess whether our models provide more efficient traffic control than random decision-making.
+
+\subsection{Results}
+Empty 
+
+\section{Max Wave}
+In the Max Wave Controller, we leverage the insights provided by \hyperref[subsec:state-5]{State 5}, which quantifies the traffic wave in the area. This baseline controller aims to minimize traffic wave effects by prioritizing the traffic light phase corresponding to the most significant wave.
+
+The results of the Max Wave Controller experiment help us gauge the effectiveness of using wave analysis to guide traffic light control decisions. By examining metrics such as average delay, wait times, and queue lengths, we can assess whether this approach mitigates traffic wave-related issues.
+
+\subsection{Results}
+Empty
+
+\section{Max Pressure}
+The Max Pressure Controller relies on the information provided by \hyperref[subsec:state-3]{State 3}, which quantifies the pressure on the traffic intersection based on queue length. This baseline controller seeks to alleviate congestion by choosing traffic light phases that reduce queue lengths.
+
+The results from the Max Pressure Controller experiment provide insights into the impact of queue length on traffic light control. Metrics such as average queue length, delay, and wait times are essential for evaluating whether this approach effectively minimizes congestion compared to other controllers.
+
+With the assessment of these baseline controllers, we can establish a foundation for evaluating the performance of our more sophisticated RL-based traffic light control strategies.
+
+\subsection{Results}
+Empty
+
+\section{IDQN} \label{sec:exp-idqn}
+The IDQN (Independent Deep Q-Network) agent is designed to utilize both state and reward representations to make informed traffic light control decisions. For state representation, we have chosen \hyperref[subsec:state-2]{State 2}, which encompasses critical attributes such as approach, total wait time, queue length, and total speed. This comprehensive state representation provides the agent with a wealth of observable information, facilitating intelligent decision-making.
+
+Regarding the choice of reward, we have opted for \hyperref[subsec:reward-2]{Reward 2}, which represents the normalized total wait time. By using this reward metric, the agent aims to minimize the cumulative waiting time of vehicles at the intersection.
+
+The observable range for traffic lights, which defines the distance at which they can detect approaching vehicles, is set at 200 meters.
+
+The results section for the IDQN controller will provide an in-depth analysis of the controller's performance in terms of various metrics, including average delay, wait times, queue lengths, and trip times. These results will be essential for evaluating the effectiveness of the IDQN agent in optimizing traffic light control.
+
+\subsection{Results}
+Empty
+
+\section{IPPO}
+The IPPO controller shares the same state and reward representations as the \hyperref[sec:exp-idqn]{IDQN} agent. It utilizes \hyperref[subsec:state-2]{State 2}, which encapsulates approach, total wait time, queue length, and total speed, and \hyperref[subsec:reward-2]{Reward 2}, which normalizes the total wait time.
+
+Similar to the IDQN agent, the maximum observable distance for traffic lights is set at 200 meters.
+
+The results section for the IPPO controller will present an evaluation of its performance based on various metrics. These metrics will provide insights into the controller's ability to optimize traffic light control under real-world conditions.
+
+\subsection{Results}
+Empty
+
+\section{MPLight} \label{sec:exp-mplight}
+The MPLight (Max Pressure with Deep Reinforcement Learning for Traffic Signal Control) controller adopts a different state and reward representation strategy compared to the previous agents. For state representation, we employ \hyperref[subsec:state-3]{State 3}, which focuses solely on the pressure at the intersection. This simplified state representation centers the agent's attention on the critical factor of pressure.
+
+The reward chosen for MPLight is \hyperref[subsec:reward-3]{Reward 3}, which is a negative value representing the queue length. This reward metric incentivizes the agent to minimize pressure and alleviate congestion.
+
+Despite the change in state and reward representation, the observable range for traffic lights remains consistent at 200 meters.
+
+The results section for the MPLight controller will provide an evaluation of its performance based on metrics related to queue length, delay, and other relevant factors. These results will help assess the effectiveness of MPLight in mitigating congestion at the intersection.
+
+\subsection{Results}
+Empty
+
+\section{MPLightFull}
+MPLightFull is an extension of the \hyperref[sec:exp-mplight]{MPLight} controller. It employs a more comprehensive state representation, \hyperref[subsec:state-4]{State 4}, which includes queue length, normalized total wait time, total speed, and normalized approach. This richer state representation enables the agent to consider a broader range of factors when making traffic light control decisions.
+
+The reward for MPLightFull remains the same as \hyperref[subsec:reward-3]{Reward 3}, emphasizing the reduction of pressure as the primary objective.
+
+Like its predecessor, MPLightFull operates with an observable range of 200 meters for traffic lights.
+
+The results section for the MPLightFull controller will provide an evaluation of its performance based on the chosen state and reward representations. Metrics related to queue length, delay, and other relevant aspects will be analyzed to determine the controller's effectiveness in optimizing traffic flow.
+
+\subsection{Results}
+Empty
+
+\section{FMA2C} \label{sec:exp-fma2c}
+The FMA2C controller is a multi-agent system that employs specific state and reward representations tailored to its collaborative nature. For state representation, FMA2C uses \hyperref[subsec:state-6]{State 6}, which is customized to meet the requirements of multi-agent traffic control. This state representation is primarily based on approach and queue length, essential for coordinating traffic light control among multiple agents.
+
+The reward used in FMA2C is a combined reward metric found under \hyperref[subsec:reward-4]{Reward 4}. This reward considers various factors, including departures, arrivals, the number of vehicles, queue length, and maximum wait time. It facilitates cooperative decision-making among agents.
+
+The observable distance for traffic lights in FMA2C is set at 200 meters.
+
+The results section for the FMA2C controller will provide a comprehensive evaluation of its performance in a multi-agent traffic control scenario. Metrics related to queue length, delay, and the collaborative behavior of the agents will be analyzed to assess the effectiveness of this multi-agent approach.
+
+\subsection{Results}
+Empty
+
+\section{FMA2CFull}
+FMA2CFull extends the capabilities of the \hyperref[sec:exp-fma2c]{FMA2C} controller by incorporating a more comprehensive state representation, \hyperref[subsec:state-7]{State 7}. This state representation includes additional parameters such as total wait time, the number of vehicles, and speed, providing a more detailed view of the traffic conditions.
+
+The reward for FMA2CFull remains consistent with \hyperref[subsec:reward-5]{Reward 5}, which considers departures, arrivals, the number of vehicles, queue length, and maximum wait time.
+
+The observable distance for traffic lights in FMA2CFull is set at 200 meters, aligning with the other controllers.
+
+The results section for the FMA2CFull controller will evaluate its performance based on the extended state and reward representations. Metrics related to traffic flow, cooperative behavior among agents, and overall system efficiency will be analyzed to assess the advantages of this enhanced multi-agent approach.
+
+\subsection{Results}
+Empty
+
+\section{Comparison}
+Empty
