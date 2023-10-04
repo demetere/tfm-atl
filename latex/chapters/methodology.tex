@@ -138,6 +138,7 @@ Let's continue our exploration of traffic lights with an examination of Traffic 
 
 Comparing Traffic Light 2 in Figure \ref{fig:tl-2} to Traffic Light \hyperref[sec:tl-1]{1}, we observe a relative reduction in complexity. Notably, there is an absence of lanes heading north, simplifying the lane configuration. However, the consistent configuration of bus lanes, as detailed in previous sections, remains a common feature among all traffic lights on Vake Street.
 
+\newpage
 \subsection{Traffic Light 3} \label{sec:tl-3}
 Our journey through the various traffic lights brings us to Traffic Light 3, portrayed below:
 
@@ -182,6 +183,8 @@ Our exploration of traffic lights continues with Traffic Light 4, presented belo
 
 Traffic Light 4 presents a more complex scenario than Traffic Light \hyperref[sec:tl-3]{3}. This intersection features additional directions and a reduction in the number of lanes in certain directions. For instance, traffic from the north can now turn in both east and west directions. Furthermore, we now have three lanes dedicated to eastbound traffic, further enhancing the lane dynamics.
 
+\newpage
+
 \subsection{Traffic Light 5} \label{sec:tl-5}
 Our exploration reaches Traffic Light 5, depicted below:
 
@@ -201,7 +204,7 @@ Our exploration reaches Traffic Light 5, depicted below:
     \caption{Traffic Light 5 (TL-5)}
     \label{fig:tl-5}
 \end{figure}
-\newpage
+
 As we approach the end of Vake Street, Traffic Light 5 ushers in a simpler intersection configuration. The traffic light phases here are relatively straightforward, primarily handling traffic from the south and enabling direct westbound and eastbound movements. The consistent presence of bus lanes persists in this intersection, as with the previous ones.
 
 \subsection{Traffic Light 6} \label{sec:tl-6}
@@ -251,6 +254,7 @@ In this section, we will delve into the changes made to the public RESCO reposit
 
 To enable any map to function within the RESCO framework, we must first ensure that we have a network map of SUMO and a configuration file specifying the network and simulation we intend to use. As detailed in Sections \ref{sec:map-creation}, \ref{sec:tl}, and \ref{sec:traffic-simulation}, we have already prepared these requisite files.
 
+\newpage
 \subsection{Map Config}
 Once we have the necessary components in place, they must be integrated into the $map\_config$ of RESCO, which takes on the following format, as illustrated in Figure \ref{fig:map-config-vake}:
 
@@ -266,9 +270,10 @@ Within the $map\_config$, we specify crucial parameters, such as the fixed durat
 \subsection{Signal Config}
 Following the completion of the Map Config, we turn our attention to the Signal Config, one of the most critical configurations within the RESCO repository. Given the complexity of this configuration for multiple traffic lights, we will focus on the code snippet as shown below:
 
+\newpage
 \begin{figure}[h]
     \centering
-    \includegraphics[width=1\linewidth]{images/methodology/signal-config-vake.png}
+    \includegraphics[width=0.8\linewidth]{images/methodology/signal-config-vake.png}
     \caption{Signal Config of Vake}
     \label{fig:signal-config-vake}
 \end{figure}
@@ -286,6 +291,7 @@ The Signal Config further includes fields for each traffic light, represented by
 
 The configuration of the Signal Config posed significant challenges, mainly due to the lack of comprehensive documentation and explanations regarding its setup. Despite opening issues in the RESCO repository, obtaining guidance proved elusive, necessitating thorough investigation and experimentation to comprehend the intricacies of the configurations.
 
+\newpage
 \subsection{MDP Config}
 Additionally, RESCO employs an MDP Config, which is primarily utilized by the FMA2C agent for Multi-Agent Traffic Control. The MDP Config structure includes various fields, many of which pertain to hyperparameters. However, two noteworthy fields are $management$ and $management\_neighbours$.
 
