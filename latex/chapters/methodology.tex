@@ -298,3 +298,25 @@ The $management\_neighbours$ field specifies neighbors for each agent. While it 
 \subsection{Contribution to RESCO}
 Throughout the course of this project, numerous challenges were encountered when working with RESCO, including issues with documentation and code errors. Some discrepancies in documentation and code had to be rectified to ensure successful execution. Consequently, efforts were made to address these issues, and in the spirit of open-source collaboration, a public Pull Request will be submitted to integrate the changes made to RESCO. This contribution aims to enhance the usability of RESCO for future researchers and students, mitigating some of the challenges encountered during this project.
 
+\section{Evaluation}
+In this section, we delineate the approaches we will employ to evaluate our work and the resultant findings.
+
+One of the primary motivations behind the creation of RESCO was the absence of a general and publicly available benchmark for evaluating traffic light control systems. Consequently, RESCO offers a set of four key benchmark metrics for evaluation:
+
+\begin{enumerate}
+    \item \textbf{Average Delay}: This metric quantifies the delay experienced by vehicles, measured as the time deviation from the expected travel time at the allowed speed. For instance, if a vehicle is permitted to travel at 60 km/h within a zone but is moving at 20 km/h due to traffic, the time difference represents the delay.
+    
+    \item \textbf{Average Wait}: It measures the time vehicles spend stationary at traffic lights when their speed is reduced to zero.
+    
+    \item \textbf{Average Queue}: This metric calculates the number of vehicles in an intersection when their speed reaches zero, providing insights into congestion levels.
+    
+    \item \textbf{Average Trip Time}: It reflects the total time a vehicle spends within the vicinity of a traffic light, from entering the zone to exiting it.
+\end{enumerate}
+
+These benchmark metrics serve as standardized criteria to assess the performance of traffic light control systems, enabling objective comparisons.
+
+However, relying solely on these metrics may not reveal whether the underlying problem of optimizing urban traffic flow has been effectively addressed or if system improvements have been achieved. To address this concern, we conduct a comparative evaluation of various reinforcement learning (RL) algorithms against Baseline Controllers. Most notably, we employ the "Fixed Time Controller," the conventional traffic light control system commonly implemented in our target region. 
+
+Our evaluation process involves running simulations with the Fixed Time Controller, collecting data based on the aforementioned benchmark metrics, and subsequently comparing these results with those obtained from simulations using different RL algorithms. This comparative analysis enables us to assess the effectiveness and efficiency of RL-based traffic light control strategies in improving urban traffic flow.
+
+By employing this comprehensive evaluation approach, we aim to ascertain the impact of our work on optimizing traffic flow within the context of Vake Street. This assessment will provide valuable insights into the effectiveness of RL-based traffic light control systems and their potential to mitigate traffic congestion and enhance overall urban mobility.
