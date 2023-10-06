@@ -8,26 +8,24 @@ export TFM_RESCO_TR=3
 
 # HOW TO RUN: train/train.sh AGENT TRIES
 
-TRIES_COUNTER=0
+TRIES_COUNTER=1
 while [ $TRIES_COUNTER -le $((TFM_RESCO_TR - 1)) ]
 do
-    if [ $TRIES_COUNTER -ne 0 ]; then # Because we already ran one run
-        train/train.sh IDQN $TRIES_COUNTER
-        train/train.sh IPPO $TRIES_COUNTER
+    if [ $TRIES_COUNTER -ne 1 ]; then # Because we already ran one run
+        train/train.sh IDQN $TRIES_COUNTER   
     fi
 
+    train/train.sh IPPO $TRIES_COUNTER
     train/train.sh MPLight $TRIES_COUNTER
     train/train.sh MPLightFULL $TRIES_COUNTER
     train/train.sh FMA2C $TRIES_COUNTER
     train/train.sh FMA2CFULL $TRIES_COUNTER
 
-    if [ $TRIES_COUNTER -ne 0 ]; then # Because we already ran one run
-        train/train.sh STOCHASTIC $TRIES_COUNTER
-	    train/train.sh MAXWAVE $TRIES_COUNTER
-        train/train.sh MAXPRESSURE $TRIES_COUNTER
-    fi
-
-    
+    train/analyses.sh
+    train/git.sh $TRIES_COUNTER
+    # train/train.sh STOCHASTIC $TRIES_COUNTER
+    # train/train.sh MAXWAVE $TRIES_COUNTER
+    # train/train.sh MAXPRESSURE $TRIES_COUNTER
     echo RUN $((++TRIES_COUNTER))/$TFM_RESCO_TR FINISHED
 done
 
