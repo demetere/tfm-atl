@@ -25,9 +25,9 @@ alg_name = {
 statics = ['MAXPRESSURE', 'STOCHASTIC', 'MAXWAVE', 'FIXED']
 
 num_n = -1
-num_episodes = 120
+num_episodes = 1500
 fs = 15
-window_size = 5
+window_size = 25
 
 metrics = [delays, durations, waiting, queue]
 metrics_str = ['Avg. Delay', 'Avg. Trip Time', 'Avg. Wait', 'Avg. Queue']
