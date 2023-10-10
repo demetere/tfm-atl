@@ -1,1 +1,57 @@
 \chapter{Conclusion}
+
+In this research, we conducted a comprehensive evaluation of various traffic light control strategies, ranging from baseline controllers to advanced Reinforcement Learning (RL)-based agents, with the aim of optimizing urban traffic flow. Our study examined the performance of these controllers using a combination of state representations and reward metrics, yielding valuable insights into the effectiveness of different approaches.
+
+\section{Baseline Controllers}
+
+We initiated our exploration by studying baseline controllers, which served as critical reference points for evaluating the effectiveness of RL-based strategies. Four distinct baseline controllers were examined: Fixed Time, Stochastic, Max Wave, and Max Pressure.
+
+The Fixed Time Controller represented a simplistic approach, employing predetermined traffic light phases without adaptation to real-time traffic conditions. Surprisingly, it even outperformed advanced RL-based controllers in specific scenarios, highlighting the challenges of achieving a generalized solution for traffic light control.
+
+The Stochastic Controller, which randomly selected traffic light phases, provided a baseline against which we compared the RL-based models' performance, assessing whether RL models could surpass random control.
+
+The Max Wave Controller aimed to minimize traffic wave effects by prioritizing the traffic light phase corresponding to the most significant wave, using \hyperref[subsec:state-5]{State 5}. The results indicated the potential of wave analysis in traffic control.
+
+The Max Pressure Controller focused on alleviating congestion by selecting phases based on queue length, leveraging \hyperref[subsec:state-3]{State 3}. The results demonstrated the importance of queue length in traffic management.
+
+\subsection{Baseline Controller Results}
+
+The results of the baseline controllers set foundational benchmarks for evaluating RL agents' performance. While Fixed Time surprisingly outperformed some advanced controllers, these baseline results underscored the complexities and challenges inherent in traffic light control.
+
+\section{Reinforcement Learning-Based Controllers}
+
+Our evaluation included several RL-based controllers, each employing distinct state representations and reward functions to optimize traffic light control.
+
+\subsection{IDQN}
+
+The IDQN (Independent Deep Q-Network) agent, utilizing \hyperref[subsec:state-2]{State 2} and \hyperref[subsec:reward-2]{Reward 2}, initially showed promise in minimizing cumulative waiting time. However, its performance declined as training progressed.
+
+\subsection{IPPO}
+
+IPPO, utilizing the same \hyperref[subsec:state-2]{State 2} and \hyperref[subsec:reward-2]{Reward 2} as IDQN, consistently underperformed baseline controllers, raising questions about its suitability for the given traffic control scenario.
+
+\subsection{MPLight}
+
+MPLight, focusing solely on traffic pressure using \hyperref[subsec:state-3]{State 3} and \hyperref[subsec:reward-3]{Reward 3}, displayed commendable performance. It outperformed baseline controllers in Average Delay, Average Trip Time, Average Wait, and Average Queue metrics, demonstrating its ability to mitigate congestion effectively.
+
+\subsection{MPLightFull}
+
+MPLightFull, an extension of MPLight with more extensive \hyperref[subsec:state-4]{State 4} representation, exhibited unexpected results. Despite the increased state information, its performance deteriorated and struggled to outperform the Random Baseline controller, highlighting that additional state representation does not necessarily lead to improved performance.
+
+\subsection{FMA2C}
+
+FMA2C, a multi-agent system using \hyperref[subsec:state-6]{State 6} and \hyperref[subsec:reward-4]{Reward 4}, excelled in Average Trip Time and Average Wait Time metrics, surpassing all other controllers except the Greedy baseline. It demonstrated the effectiveness of cooperative multi-agent traffic control.
+
+\subsection{FMA2CFull}
+
+FMA2CFull, an extended version of FMA2C with \hyperref[subsec:state-7]{State 7}, maintained a performance level similar to its predecessor. It excelled in Average Wait and Average Trip Time metrics while significantly outperforming baseline controllers in Average Queue.
+
+\section{Final Insights and Implications}
+
+Our comprehensive evaluation provides valuable insights into traffic light control strategies. Each controller demonstrated strengths in specific areas, emphasizing the importance of selecting an appropriate controller based on the desired traffic management objective. The results underscore the potential of RL-based traffic light control methods to significantly improve urban traffic flow, with each controller contributing unique insights and performance nuances.
+
+\section{Comparison with RESCO Results}
+
+We also compared our experimental results with those from RESCO\cite{resco}. While our experiments aligned with RESCO's findings in terms of FMA2C's strong performance, discrepancies in IPPO's performance highlighted the need for map-specific research and the careful selection of RL models to address the distinct challenges posed by different maps.
+
+In conclusion, this research sheds light on the complexities of urban traffic control and the potential of RL-based solutions. It encourages further exploration into tailored RL models and strategies for specific traffic scenarios, emphasizing the need for adaptive and context-aware traffic light control systems.

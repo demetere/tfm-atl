@@ -326,3 +326,83 @@ However, relying solely on these metrics may not reveal whether the underlying p
 Our evaluation process involves running simulations with the Fixed Time Controller, collecting data based on the aforementioned benchmark metrics, and subsequently comparing these results with those obtained from simulations using different RL algorithms. This comparative analysis enables us to assess the effectiveness and efficiency of RL-based traffic light control strategies in improving urban traffic flow.
 
 By employing this comprehensive evaluation approach, we aim to ascertain the impact of our work on optimizing traffic flow within the context of Vake Street. This assessment will provide valuable insights into the effectiveness of RL-based traffic light control systems and their potential to mitigate traffic congestion and enhance overall urban mobility.
+
+\section{States and Reward Representation}
+In this section, we delve into the details of the state and reward representations used across our controllers. Understanding these representations is vital as they form the foundation upon which our RL-based traffic light control strategies are built.
+
+\subsection{States}
+\subsubsection{State 1} \label{subsec:state-1}
+State 1 encompasses the following observable states:
+
+\begin{enumerate}
+    \item Total approach
+    \item Total wait
+    \item Total queue
+    \item Total speed
+\end{enumerate}
+
+\subsubsection{State 2} \label{subsec:state-2}
+State 2 represents a normalized version of \hyperref[subsec:state-1]{State 1}.
+
+\subsubsection{State 3} \label{subsec:state-3}
+State 3 consists of a single observable attribute, namely queue length.
+
+\subsubsection{State 4} \label{subsec:state-4}
+In State 4, we incorporate the following values:
+\begin{enumerate}
+    \item Total queue
+    \item Normalized total wait
+    \item Total speed
+    \item Normalized total approach
+\end{enumerate}
+
+\subsubsection{State 5} \label{subsec:state-5}
+State 5, known as "Wave," represents the sum of queue length and approach, providing insights into traffic wave dynamics.
+
+\subsubsection{State 6} \label{subsec:state-6}
+State 6 is specifically tailored for the FMA2C agent and includes state parameters such as approach and queue, accommodating specific hyperparameters.
+
+\subsubsection{State 7} \label{subsec:state-7}
+Expanding on \hyperref[subsec:state-6]{State 6}, State 7 introduces additional parameters to the state representation, encompassing total wait time, the number of vehicles, and speed.
+
+\subsection{Rewards}
+\subsubsection{Reward 1} \label{subsec:reward-1}
+Reward 1 is defined as the negative total wait time, serving as a straightforward reward mechanism.
+
+\begin{equation}
+    \text{Reward}(s) = -\sum_{\text{lane in signal}} \text{wait\_time}(s_{\text{lane}})
+\end{equation}
+
+\subsubsection{Reward 2} \label{subsec:reward-2}
+Reward 2 is a normalized variant of \hyperref[subsec:reward-1]{Reward 1}, providing scaled rewards.
+
+\subsubsection{Reward 3} \label{subsec:reward-3}
+Termed as "Pressure reward," Reward 3 is represented by the negative queue length, promoting efficient traffic flow.
+
+\begin{equation}
+    \text{Reward}(s) = -\sum_{\text{lane in signal}} \text{queue\_length}(s_{\text{lane}})
+\end{equation}
+
+\subsubsection{Reward 4} \label{subsec:reward-4}
+Reward 4 is designed specifically for FMA2C due to its multi-agent nature. It combines departures, arrivals, the number of vehicles, queue length, and maximum wait time. The formula used for calculating the reward is as follows:
+
+\begin{equation}
+    \text{Reward}(s) = -\sum_{\text{lane in signal}} \text{queue}(s_{\text{lane}}) - \text{coef} \times \sum_{\text{lane in signal}} \text{max\_wait}(s_{\text{lane}})
+\end{equation}
+    
+Where:
+\begin{align*}
+\text{Reward}(s) & : \text{The total reward for the current state } s. \\
+\text{lane} & : \text{An individual lane in the signal.} \\
+\text{queue}(s_{\text{lane}}) & : \text{The queue length in lane } s_{\text{lane}}. \\
+\text{coef} & : \text{A coefficient defined in the configuration.} \\
+\text{max\_wait}(s_{\text{lane}}) & : \text{The maximum wait time in lane } s_{\text{lane}}. \\
+\end{align*}
+    
+This formula represents the reward calculation in your code, where you sum the negative queue lengths and the product of the maximum wait times and the coefficient for each lane in the signal. The resulting reward is negative because you subtract it from zero.
+
+    
+\subsubsection{Reward 5} \label{subsec:reward-5}
+Reward 5 is tailored for FMA2CFull, another multi-agent system. Similar to \hyperref[subsec:reward-4]{Reward 4} with just change of coefficients and its values
+
+With a clear understanding of the states and reward representations, we can now proceed to examine each controller and their respective results.
