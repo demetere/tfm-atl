@@ -188,7 +188,7 @@ In this section, we discuss relevant study that was done for diagnosing some of 
 
 \subsection{Problem Formulation}
 
-The problem of optimizing traffic signal control using RL is rooted in the definition of the RL environment. The state representation and the decision-making process play a crucial role in this context. The RL agent observes the environment, represented as a numerical state representation $s_t$, and makes decisions on whether to change the signal to the next phase or keep the current signal, denoted as $a_t$. This concept of a pre-defined signal phase order aligns with established practices in transportation engineering  ensuring driver expectations and safety considerations.
+The problem of optimizing traffic signal control using RL is rooted in the definition of the RL environment. The state representation and the decision-making process play a crucial role in this context. The RL agent observes the environment, represented as a numerical state representation $s_t$, and makes decisions on whether to change the signal to the next phase or keep the current signal, denoted as $a_t$. This concept of a pre-defined signal phase order aligns with established practices in transportation engineering \cite{sutton1999between,urbanik2015signal} ensuring driver expectations and safety considerations.
 
 \subsubsection{Formal Problem Statement}
 
@@ -228,64 +228,69 @@ $N$ & Number of vehicles in the system \\
 \end{tabular}
 \end{table}
 
-% \subsection{Objective}
+\subsection{Objective}
 
-% The primary objectives of the research in this area can be summarized as follows:
+The primary objectives of the research in this area can be summarized as follows:
 
-% \begin{itemize}
-%     \item Find an RL algorithm to effectively address the traffic signal control problem.
-%     \item Establish connections between RL algorithms and classic transportation theory, demonstrating the optimality of the RL approach.
-%     \item Analyze the traits that make RL outperform other traditional methods in traffic signal control.
-% \end{itemize}
+\begin{itemize}
+    \item Find an RL algorithm to effectively address the traffic signal control problem.
+    \item Establish connections between RL algorithms and classic transportation theory, demonstrating the optimality of the RL approach.
+    \item Analyze the traits that make RL outperform other traditional methods in traffic signal control.
+\end{itemize}
 
-% This review sets the stage for our proposed RL approach and its contributions to solving the traffic signal control problem.
+This review sets the stage for our proposed RL approach and its contributions to solving the traffic signal control problem.
 
 
-% Hello there
-% \subsection{Methodology}
+Hello there
+\subsection{Methodology}
 
-% Several studies have delved into traffic signal control problems using RL. A key development in this field is the Light-IntellighT (LIT) method, which is designed to address the traffic signal control problem. LIT adopts a specific state and reward design, aligning with the approach outlined in Section 3.2.
+Several studies have delved into traffic signal control problems using RL. A key development in this field is the Light-IntellighT (LIT) method, which is designed to address the traffic signal control problem.
 
-% \subsubsection{Deep Q-Network}
+\subsubsection{Deep Q-Network}
 
-% LIT leverages the Deep Q-Network (DQN) \cite{intellilight-rl-traffic-light} to seek actions that maximize long-term rewards. The Bellman Equation \cite{sutton1999between} serves as a fundamental principle in this approach:
+LIT leverages the Deep Q-Network (DQN) to seek actions that maximize long-term rewards. The Bellman Equation \cite{sutton1999between} serves as a fundamental principle in this approach:
 
-% \[
-% Q(s_t, a_t) = R(s_t, a_t) + \gamma \max Q(s_{t+1}, a_{t+1})
-% \]
+\[
+Q(s_t, a_t) = R(s_t, a_t) + \gamma \max Q(s_{t+1}, a_{t+1})
+\]
 
-% The use of DQN, as illustrated in Figure 2, demonstrates the effective use of features such as vehicle numbers and phase indicators.
+The use of DQN, as illustrated in Figure \ref{fig:diagnosis_figure}, demonstrates the effective use of features such as vehicle numbers and phase indicators.
 
-% \subsubsection{Classic Transportation Theory}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\linewidth]{images/related_work/overview.png}
+    \caption{Overview of their traffic signal control system.\cite{zheng2019diagnosing}}
+    \label{fig:diagnosis_figure}
+\end{figure}
 
-% Before delving into RL-based traffic signal control algorithms, it's important to consider traditional transportation theory. The optimization of traffic signal control from a transportation research perspective focuses on minimizing total travel time under specific traffic conditions.
+\subsubsection{Classic Transportation Theory}
 
-% The mathematical expression for this optimization problem involves constraints related to green phase allocation and traffic flow:
+Before delving into RL-based traffic signal control algorithms, it's important to consider traditional transportation theory. The optimization of traffic signal control from a transportation research perspective focuses on minimizing total travel time under specific traffic conditions.
 
-% \[
-% \begin{array}{ll}
-% \text{minimize} & \sum_{j=1}^M T_j \\
-% \text{subject to} & g^{\text{min}} \leq g_k \leq g^{\max} \\
-% & \frac{g_j}{C} \geq \frac{f_{in, j}}{u_{sat, j}}, \quad j=1,2,3, \ldots, M
-% \end{array}
-% \]
+The mathematical expression for this optimization problem involves constraints related to green phase allocation and traffic flow:
 
-% The constraints ensure appropriate green phase allocation and traffic flow considerations. This traditional transportation approach lays the foundation for understanding the traffic signal control problem from a different perspective.
+\[
+\begin{array}{ll}
+\text{minimize} & \sum_{j=1}^M T_j \\
+\text{subject to} & g^{\text{min}} \leq g_k \leq g^{\max} \\
+& \frac{g_j}{C} \geq \frac{f_{in, j}}{u_{sat, j}}, \quad j=1,2,3, \ldots, M
+\end{array}
+\]
 
-% \subsubsection{Connecting RL with Transportation Theory}
+The constraints ensure appropriate green phase allocation and traffic flow considerations. This traditional transportation approach lays the foundation for understanding the traffic signal control problem from a different perspective.
 
-% This section aims to build connections between the RL algorithm and transportation methods. It highlights the equivalence between using queue length as a reward function in RL and optimizing travel time in transportation methods. Additionally, the use of the number of vehicles on each lane ($v_j$) and the current phase ($p$) as the only state features is discussed, emphasizing their importance in understanding system dynamics.
+\subsubsection{Connecting RL with Transportation Theory}
 
-% \subsubsection{Analysis of Traits of RL Approach}
+This section aims to build connections between the RL algorithm and transportation methods. It highlights the equivalence between using queue length as a reward function in RL and optimizing travel time in transportation methods. Additionally, the use of the number of vehicles on each lane ($v_j$) and the current phase ($p$) as the only state features is discussed, emphasizing their importance in understanding system dynamics.
 
-% The analysis of RL's traits that enable it to outperform traditional methods is another critical aspect of these studies. These traits include:
+\subsubsection{Analysis of Traits of RL Approach}
 
-% \begin{itemize}
-%     \item Online learning: RL algorithms adapt in real-time based on feedback from the environment, learning from mistakes.
-%     \item Sampling guidance: RL employs experience to make guided decisions, improving convergence and reward.
-%     \item Forecast: RL predicts future rewards through the Bellman equation, which enables actions for long-term rewards.
-% \end{itemize}
+The analysis of RL's traits that enable it to outperform traditional methods is another critical aspect of these studies. These traits include:
 
-% These traits distinguish RL as a powerful approach in traffic signal control.
+\begin{itemize}
+    \item Online learning: RL algorithms adapt in real-time based on feedback from the environment, learning from mistakes.
+    \item Sampling guidance: RL employs experience to make guided decisions, improving convergence and reward.
+    \item Forecast: RL predicts future rewards through the Bellman equation, which enables actions for long-term rewards.
+\end{itemize}
 
-% In the following sections, we present our proposed RL approach, building upon the insights gained from the related work.
+These traits distinguish RL as a powerful approach in traffic signal control.
