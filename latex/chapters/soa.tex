@@ -110,15 +110,16 @@ To explore IPPO in more detail, the following paper\cite{ault2020learning} provi
 
 
 \section{MPLight}\label{sec:MPLight}
-MPLight\cite{chen2020toward} is a traffic light control system that utilizes the concept of pressure to coordinate multiple intersections efficiently. It operates by considering the pressure, which is the difference in queue lengths from incoming lanes of an intersection and the queue length on a downstream intersection's receiving lane. MPLight is designed to optimize traffic flow and reduce congestion in urban environments.
+The MPLight\cite{chen2020toward} traffic light control system is one that makes effective use of the idea of pressure in order to organize the flow of traffic through many intersections. In order for it to function properly, it takes into account the pressure, which can be defined as the disparity between the lengths of the lines waiting to enter a junction and the line waiting to enter an intersection farther downstream. MPLight is intended to improve the flow of traffic in metropolitan areas while simultaneously lowering levels of congestion.
 
-In MPLight, pressure serves as a critical metric for traffic signal coordination. It is calculated as the difference between the queue lengths of vehicles waiting to enter an intersection and the queue length on the downstream intersection's receiving lane. By considering pressure, MPLight aims to balance the traffic load across multiple intersections.
+Within MPLight, pressure is utilized as an essential parameter for the purpose of coordinating traffic signals. It is determined by subtracting the length of the line formed by cars waiting to enter a junction from the length of the line formed by vehicles waiting to enter the receiving lane of the intersection farther downstream. MPLight seeks to achieve a balance in the traffic load at numerous junctions by taking pressure into consideration.
 
-Chen et al. introduced MPLight as an approach to traffic light control that leverages reinforcement learning techniques. They utilized Deep Q-Networks (DQN) as the underlying framework for making traffic signal decisions. In this setup, a DQN agent is shared across all intersections.
+MPLight is a method for controlling traffic lights that was developed by Chen et al., and it makes use of principles from reinforcement learning. In order to arrive at judgments about the traffic signals, they made use of Deep Q-Networks (DQN) as the underlying architecture. One DQN agent serves as the point of contact for all of the intersections in this configuration.
 
-In MPLight, pressure is not only used as a coordination metric but also as both the state and reward for the DQN agent. The state of the agent at a given time step includes information about the pressure values for all relevant intersections. The reward signal is derived from pressure differences and is used to guide the learning process of the DQN agent.
+In MPLight, pressure is employed not only as a coordination metric but also as the state and the reward for the DQN agent. This is because pressure is a measure of how well the agents are working together. At every particular time step, information about the pressure values at all relevant intersections is included in the state of the agent that is being described. The DQN agent's capacity to learn is facilitated by the reward signal, which is derived from changes in pressure and serves as a guide for that process.
 
-Chen et al.\cite{chen2020toward} reported significant improvements in traffic flow and travel times when implementing MPLight compared to existing methods. Specifically, MPLight achieved up to a 19.2\% improvement in travel times over the next best compared method, PressLight.
+When compared to the approaches that are currently being used, Chen et al.\cite{chen2020toward} showed substantial improvements in both the flow of traffic and the journey times when MPLight was used. To be more specific, MPLight was able to produce up to a 19.2 percent improvement in travel times when compared to the next best approach, which was PressLight.
+
 
 \section{FMA2C}\label{sec:FMA2C}
 
@@ -132,7 +133,7 @@ In FMA2C, the core agents responsible for signal control at intersections are ca
 
 \subsubsection{Managing Agents (Region-Level Agents)}
 
-FMA2C introduces managing agents, which operate at a higher level of hierarchy compared to workers. Each managing agent is responsible for a specific region or area within the traffic network. These managing agents oversee multiple workers and have the responsibility of optimizing traffic flow within their assigned regions.
+In FMA2C, managing agents are introduced, and in comparison to employees, they function at a higher level of the organizational structure. Within the traffic network, the responsibility for a particular region or area falls on the shoulders of each managing agent. These management agents are in charge of many personnel and are tasked with increasing the efficiency of traffic flow within the regions that they are responsible for.
 
 \subsection{Hierarchical Reinforcement Learning}
 
@@ -140,7 +141,7 @@ FMA2C leverages hierarchical reinforcement learning to improve traffic signal co
 
 \subsubsection{Managing Agent Training}
 
-Managing agents are trained to optimize traffic flow within their assigned regions. They receive high-level traffic-related goals and objectives, such as minimizing congestion or maximizing traffic throughput. The managing agents use these goals to make region-level decisions.
+Training is provided to managing agents so that they can maximize the flow of traffic within the regions to which they are allocated. They are given high-level aims and objectives relating to traffic, such as reducing congestion as much as possible or increasing the amount of traffic that can pass through an area. The governing agents will base their judgments at the regional level on these aims.
 
 The training of managing agents can be formulated as a reinforcement learning problem, where the managing agent learns a policy \(\pi_m\) to maximize a region-specific objective function:
 
@@ -176,9 +177,10 @@ Where:
 
 \subsection{Coordination Mechanisms}
 
-FMA2C employs various coordination mechanisms between managing agents and workers to ensure effective traffic signal control. These mechanisms may include communication of high-level goals, reward sharing, and coordination through a central mechanism.
+In order to maintain efficient traffic signal control, FMA2C makes use of a variety of procedures that facilitate collaboration between managing agents and personnel. The transmission of high-level goals, the distribution of rewards, and coordination through a central mechanism are some examples of the methods that may be used.
 
 \subsection{Performance Improvement}
 
-FMA2C aims to improve traffic flow and reduce congestion by introducing a hierarchical framework that allows for coordinated decision-making at both the region and intersection levels. By aligning the actions of workers with the goals of managing agents, FMA2C seeks to optimize traffic signal timings efficiently.
+Through the implementation of a hierarchical structure that enables coordinated decision-making at both the regional and junction levels, FMA2C intends to accomplish the goals of enhancing traffic flow while simultaneously decreasing congestion. FMA2C's purpose is to optimize the timing of traffic signals in an effective manner by ensuring that the activities of workers are aligned with the goals of management agents.
+
 

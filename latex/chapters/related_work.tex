@@ -14,9 +14,9 @@ RESCO is open-source and freely available under the GNU General Public License 3
 
 \subsection{State and Action Space}
 
-RESCO accommodates a wide range of sensing assumptions, including advanced sensing capabilities \cite{codeca2018monaco}. Users can select subsets of state features based on specific sensing assumptions. Features include information such as stopped vehicles' queue length, the number of approaching vehicles, total waiting time for stopped vehicles, and more, at the level of state, intersection, and lane. Additionally, users can define the effective sensing distance during initialization.
+RESCO is able to accept a broad spectrum of sensing assumptions, including sophisticated sensing capabilities \cite{codeca2018monaco}. Users are able to make feature selections for the state that are based on certain sensing assumptions. At the level of the state, junction, and lane, the features include information about the length of the line of stopped cars, the number of vehicles that are approaching, the total amount of time that stopped vehicles have been waiting, and more \cite{codeca2018monaco}. In addition, users have the ability to define the effective sensing distance when the system is initialized.
 
-The action space in RESCO encompasses sets of non-conflicting phase combinations, following the methodology described in Section 2.2 of the RESCO documentation \cite{codeca2018monaco}. By default, actions are chosen for the next 10 seconds of simulation, with the first 3 seconds reserved for yellow signals, if necessary.
+Following the technique outlined in Section 2.2 of the RESCO handbook \cite{codeca2018monaco}, the action space in RESCO includes sets of phase combination options that do not cause a conflict with one another. Actions are selected for the subsequent ten seconds of the simulation by default, with the first three seconds being held in reserve for yellow signals, if they are required.
 
 \subsection{Reward Metrics}
 
@@ -74,11 +74,12 @@ Previous models that aim to provide agents with comprehensive information often 
     \label{fig:atsc_clustering}
 \end{figure}
 
-To address these challenges, they introduce Reinforcement-Learning-Light (RLight)\cite{kanis2021deep}, a straightforward yet effective RL framework designed to exploit inductive biases specific to ATSC. Building on LIT's strengths, they enhance the state representation to accommodate clustered traffic data. In their approach, they distinguish between approaching and waiting vehicles, incorporating the mean speed and distance of the approaching cluster into the state representation. This method leverages the inherent structure of traffic clusters to keep the state representation concise and actionable. By using structured data sources such as ground sensors and GPS data, their approach bridges the gap between RL and real-world ATSC applications.
+Reinforcement-Learning-Light (RLight)\cite{kanis2021deep} is a simplistic yet effective reinforcement learning framework that was created to exploit inductive biases that are peculiar to ATSC. In order to solve these issues, the authors present this framework. They improve the state representation in order to accept clustered traffic data by capitalizing on the capabilities that LIT has. In their method, they differentiate between cars that are approaching and those that are waiting, and they describe the condition of the system by factoring in the mean speed and distance of the vehicles that are coming. This approach makes use of the inherent structure that traffic clusters have in order to maintain a representation of the state that is succinct and actionable. Their method bridges the gap between RL and real-world applications of ATSC by making use of structured data sources like ground sensors and GPS data.
 
-Notably, prior research has largely overlooked the modeling of yellow light in ATSC. While the problem has been traditionally framed as a standard MDP, they explore the potential of incorporating inductive biases that can skip redundant time steps during yellow lights, thus simplifying the reward signal and accelerating the learning process by approximately one-third.
+It is important to note that the modeling of yellow light in ATSC has been mainly neglected in previous studies. They study the prospect of introducing inductive biases that can skip redundant time steps during yellow lights, thereby simplifying the reward signal and expediting the learning process by about one-third. While the issue has usually been framed as a normal MDP, this research investigates the possibility of incorporating inductive biases.
 
-Furthermore, there is no consensus in previous work regarding the safety and effectiveness of cyclic versus acyclic action spaces. They also investigate this difference, shedding light on the impact of allowing the agent to freely choose the optimal phase at each time step.
+In addition, there is no agreement among the researchers who have done work in the past about whether or not cyclic or acyclic action spaces are more secure and effective. They study this distinction as well, offering insight on the implications of letting the agent to freely pick the ideal phase at each time step in the process.
+
 
 They evaluate their approach using real data from five intersections in Hangzhou, employing the CityFlow simulator \cite{zhang2019cityflow} unlike the simulator that I used in this work. To ensure the generalization of their method, they split the dataset into training, validation, and test sets. In their experiments, they compare RLight to a rule-based method known as Self-Organizing Traffic Lights (SOTL) \cite{cools2008selforganizing} in both multi-phase and two-phase settings. According to them they achieve outstanding results where RLight consistently outperforms state-of-the-art methods across all five intersections.
 
@@ -180,7 +181,7 @@ In this extended SOTL algorithm, the phase with the maximum cumulative waiting t
 \end{algorithmic}
 \end{algorithm}
 
-This extended algorithm ensures that the phase with the most waiting time is selected, while simultaneously addressing the issue of passed vehicles in multi-phase intersections. Importantly, the modified algorithm operates effectively in two-phase, four-approach settings, akin to the original SOTL method.
+This improved method guarantees that the phase with the longest waiting time is picked while also solving the issue of passing cars in multi-phase junctions. It does this by ensuring that the phase with the most waiting time is selected. It is important to note that the updated algorithm functions efficiently in two-phase, four-approach situations, just like the original SOTL technique.
 
 
 \section{Diagnosing Reinforcement Learning for Traffic Signal Control}
@@ -188,7 +189,8 @@ In this section, we discuss relevant study that was done for diagnosing some of 
 
 \subsection{Problem Formulation}
 
-The problem of optimizing traffic signal control using RL is rooted in the definition of the RL environment. The state representation and the decision-making process play a crucial role in this context. The RL agent observes the environment, represented as a numerical state representation $s_t$, and makes decisions on whether to change the signal to the next phase or keep the current signal, denoted as $a_t$. This concept of a pre-defined signal phase order aligns with established practices in transportation engineering \cite{sutton1999between,urbanik2015signal} ensuring driver expectations and safety considerations.
+The specification of the RL environment is the basis of the issue that arises while attempting to optimize traffic signal control by utilizing RL. Both the representation of the state and the mechanism by which decisions are made are extremely important in this situation. The RL agent monitors the environment, which is encapsulated by the numerical state representation $s_t$, and then decides whether or not to advance the signal to the next phase by keeping the signal that is now active, which is symbolized by the symbol $a_t$. This idea of a pre-defined signal phase order is consistent with well-established methods in transportation engineering\cite{sutton1999between,urbanik2015signal}, which helps to ensure that driver expectations and safety concerns are taken into consideration.
+
 
 \subsubsection{Formal Problem Statement}
 

@@ -60,9 +60,9 @@ Simulation of Urban Mobility (SUMO)\cite{SUMO2018} plays a pivotal role in enhan
 \subsection{CityFlow}
 The widely used public traffic simulator, SUMO (Simulation of Urban Mobility)\cite{SUMO2018}, has limitations in terms of scalability to accommodate large road networks and traffic flows. The authors mention that SUMO's performance deteriorates significantly when simulating extensive road networks and a high volume of vehicles, particularly when interfacing with Python for reinforcement learning support. In contrast, the authors introduce their novel traffic simulator, CityFlow\cite{zhang2019cityflow}, which addresses these limitations. CityFlow offers multithreading capabilities and is the first open-source simulator designed to support city-wide traffic simulation. It offers flexibility in defining road networks, vehicle models, and traffic signal plans, boasting a simulation speed over twenty times faster than SUMO. Additionally, the authors provide a user-friendly interface tailored for reinforcement learning experiments.
 
-The introduction of CityFlow not only holds promise for optimizing traffic signal control but also opens avenues for various large-scale transportation research studies, such as vehicle routing through mobile apps and traffic jam prevention. Furthermore, CityFlow may serve as a benchmark reinforcement learning environment for transportation studies, similar to OpenAI Gym. The authors also express their intention to enhance the simulator by calibrating simulation parameters using real-world observations, thereby generating both fast and "real" data samples.
+The implementation of CityFlow not only offers promise for enhancing traffic signal regulation, but it also provides doors for a variety of large-scale transportation research investigations, such as the avoidance of traffic jams and the routing of vehicles via mobile applications. In addition, CityFlow has the potential to act as a standard environment for reinforcement learning in the field of transportation research, very much like OpenAI Gym. In addition, the authors state that they want to improve the simulator by calibrating its simulation settings using observations from the actual world, which will result in the generation of data samples that are both quick and "real."
 
-This paper explores the capabilities and potential applications of CityFlow, emphasizing its contribution to addressing urban traffic control challenges and advancing transportation research through reinforcement learning.
+The purpose of this study is to investigate the capabilities and prospective uses of CityFlow, with a particular emphasis on CityFlow's contribution to tackling the issues of urban traffic control and improving transportation research through reinforcement learning.
 
 \subsection{Chosen Option: SUMO}
 When selecting a simulation tool for my research on optimizing urban traffic flow using reinforcement learning-based traffic light control, it was essential to consider the strengths and weaknesses of available options. In this section, we elaborate on my choice of Simulation of Urban Mobility (SUMO) over CityFlow, another prominent simulation testbed.
@@ -73,12 +73,12 @@ One of the primary concerns with CityFlow, already briefly stated in Section \re
 
 CityFlow's common benchmark scenario, the Manhattan, NY network, is often cited as representing a real-world city layout and demand. However, the support for this claim is limited. In contrast, SUMO offers a rich array of benchmark scenarios, including those derived from actual urban environments, making it a more versatile choice for simulating real-world traffic conditions. This versatility aligns with my research goal of optimizing urban traffic flow, which requires realistic modeling and evaluation.
 
-For my thesis on optimizing urban traffic flow using reinforcement learning-based traffic light control, it was crucial to select a simulation tool that not only provides a robust and well-validated framework but also allows for the accurate representation of urban traffic scenarios. SUMO's extensive calibration, evaluation, and support for various real-world scenarios make it the ideal choice for my research objectives.
+It was essential for me to choose a simulation tool that not only offers a reliable and well-validated framework, but also makes it possible to accurately simulate different urban traffic scenarios. This was necessary for my thesis, which focuses on improving the flow of urban traffic through the use of reinforcement learning-based traffic light regulation. For the purposes of my study, SUMO is the tool of choice because of its comprehensive calibration and assessment capabilities, as well as its support for a wide range of real-world scenarios.
 
 \section{NetEdit} \label{sec:netedit}
 NetEdit is a powerful network editing tool developed as a part of the SUMO (Simulation of Urban Mobility)\cite{SUMO2018} suite. SUMO is widely used in the field of traffic simulation and optimization, and NetEdit is a crucial component of this framework. This section provides an overview of NetEdit, its features, and its significance in the context of traffic network modeling.
 
-NetEdit is designed to facilitate the creation and modification of road networks for traffic simulation purposes. It offers a user-friendly graphical interface that allows researchers, urban planners, and traffic engineers to define, edit, and refine road networks with ease. This tool is an essential component in the SUMO ecosystem, enabling users to customize network layouts, road geometries, traffic light configurations, and more.
+For the sake of traffic simulation, NetEdit was developed to make the process of creating and modifying road networks as easy as possible. It provides a graphical interface that is intuitive and easy to use, making it possible for academics, urban planners, and traffic engineers to create, amend, and improve road networks with relative simplicity. This tool is a key component in the SUMO ecosystem, as it gives users the ability to alter network architectures, road geometry, traffic signal arrangements, and a great deal more.
 
 \subsection{Key Features and Functions}
 
@@ -96,7 +96,8 @@ NetEdit is designed to facilitate the creation and modification of road networks
 
 \subsection{Role in Generating the "Vake" Map Network}
 
-NetEdit played a pivotal role in the creation of the "Vake" map network and subsequent traffic simulations. The "Vake" map is a significant case study in urban traffic optimization. Researchers leveraged NetEdit's capabilities to design a detailed and representative road network for the Vake district, incorporating real-world data and traffic patterns.
+The building of the "Vake" map network and the subsequent traffic simulations were both significantly aided by NetEdit. A notable case study in the optimization of urban traffic is represented by the "Vake" map. Researchers made use of NetEdit's capabilities in order to construct a comprehensive and accurate road network for the Vake area. This road network took into account real-world data as well as traffic patterns.
+
 
 By using NetEdit, they were able to:
 
@@ -171,9 +172,9 @@ TensorFlow has been applied to a wide array of machine learning tasks, including
 \end{itemize}
 
 \subsection{Use Cases}
-In the pursuit of optimizing urban traffic flow through reinforcement learning-based traffic light control, my thesis leverages the capabilities of two prominent deep learning frameworks: PyTorch and TensorFlow. These frameworks play pivotal roles in the development and training of various intelligent agents within my research.
+PyTorch and TensorFlow are two well-known deep learning frameworks, and my thesis makes use of their capabilities in order to optimize urban traffic flow by using reinforcement learning to regulate traffic lights. Within the scope of my study, the formation and education of a wide variety of intelligent agents is made possible, in large part, thanks to the contributions of these frameworks.
 
-PyTorch, renowned for its dynamic computational graph and extensive support for neural network development, serves as the foundation for most of our intelligent agents. Specifically, the following agents are implemented using PyTorch:
+PyTorch, which is well-known for its dynamic computational graph and broad support for the building of neural network architecture, is the basis for the majority of our various intelligent agents. PyTorch is utilized in the construction of the following agents, specifically:
 
 \begin{itemize}
     \item \textbf{MAXWAVE}: An agent designed to maximize the efficiency of wave-based traffic flow.
@@ -199,13 +200,13 @@ In parallel, we utilize TensorFlow, known for its scalability and static computa
     \item \textbf{FMA2CFULL}: An extended version of FMA2C, enriched with additional functionalities and improvements.
 \end{itemize}
 
-TensorFlow's static graph compilation and support for distributed computing are valuable for training these agents, particularly in large-scale and performance-critical scenarios.
+When it comes to training these agents, the static graph compilation and support for remote computation that TensorFlow provides are extremely useful features. This is especially true in large-scale and performance-critical circumstances.
 
-The combination of PyTorch and TensorFlow allows us to harness the strengths of both frameworks to address various aspects of urban traffic flow optimization through reinforcement learning. These frameworks, together with my custom-developed agents, form the core of my research methodology.
+By combining PyTorch with TensorFlow, we are able to leverage the benefits of both frameworks to handle several facets of urban traffic flow optimization via reinforcement learning. This was made possible by combining the power of both frameworks. The foundation of my research technique is comprised of these frameworks as well as the agents that I have designed and developed myself.
 
 \section{Hardware Setup}
 
-The success of any computational experiment, especially those involving complex algorithms and simulations in the field of Artificial Intelligence, relies heavily on the underlying hardware infrastructure. In this section, we provide a detailed overview of the hardware setup utilized for my research, emphasizing its capabilities and constraints.
+Any computational experiment, but particularly those using intricate algorithms and simulations in the field of artificial intelligence, is highly dependent on the underlying hardware infrastructure in order to achieve a successful outcome. In this section, we present a comprehensive review of the hardware configuration that was used for my study, with an emphasis on both its strengths and its limitations.
 
 \subsection{Processor}
 
@@ -219,6 +220,6 @@ For tasks that involve heavy parallel processing and deep learning, a dedicated 
 
 Our research journey has been marked by continuous experimentation, with our hardware setup running nonstop for three weeks, equivalent to 21 days. This extended period of operation was necessitated by the computational demands of our experiments and the complexity of the reinforcement learning-based traffic light control models we have been developing. 
 
-It is important to mention that the hardware used, specifically my personal laptop equipped with the aforementioned CPU and GPU, reflects a budgetary constraint. While these components have proven capable, advanced research in AI often requires access to high-performance computing clusters or specialized hardware designed for deep learning tasks. Despite these limitations, our dedication and commitment have enabled us to make significant progress in optimizing urban traffic flow using reinforcement learning-based techniques.
+It is essential to point out that a financial limitation was reflected in the hardware that was utilized, more precisely my own personal laptop which was outfitted with the CPU and GPU described above. Although these components have shown that they are capable, serious research in artificial intelligence frequently requires access to high-performance computer clusters or specialized gear that was developed specifically for deep learning applications. In spite of these constraints, the hard work and devotion of our team has allowed us to make substantial headway in improving urban traffic flow through the use of approaches based on reinforcement learning.
 
-In conclusion, our hardware setup, comprising the Intel Core i5-9300H CPU and the NVIDIA GeForce GTX 1660 Ti Mobile GPU, has served as the workhorse for our research, albeit with inherent limitations. The continuous experimentation over a three-week period demonstrates our commitment to advancing the field of urban traffic flow optimization, even within the constraints of personal hardware resources.
+In conclusion, our hardware configuration, which consists of an Intel Core i5-9300H central processing unit and an NVIDIA GeForce GTX 1660 Ti Mobile graphics processing unit, has been the workhorse for our investigation, despite the restrictions that are inherently present. Even though we are limited by the resources available on our own hardware, we have been conducting consistent tests over the course of three weeks to demonstrate our dedication to advance the subject of urban traffic flow optimization.

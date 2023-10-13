@@ -4,11 +4,11 @@
 Reinforcement Learning (RL) is a paradigm in which an agent learns to make decisions by interacting with its environment. In the RL framework, the environment is often modeled as a Markov decision process (MDP), characterized by key components:
 
 \begin{itemize}
-  \item $S$ – the state space,
-  \item $A$ – the action space,
-  \item $P(s_t, a, s_{t+1})$ – the transition function, mapping from state $s_t$ and action $a$ to the next state $s_{t+1}$ with probabilities in the range [0, 1],
-  \item $R(s, a)$ – the reward function, which assigns a real-valued reward to each state-action pair,
-  \item $\gamma$ – the discount factor, controlling the trade-off between immediate and future rewards.
+  \item $S$ - the state space,
+  \item $A$ - the action space,
+  \item $P(s_t, a, s_{t+1})$ - the transition function, mapping from state $s_t$ and action $a$ to the next state $s_{t+1}$ with probabilities in the range [0, 1],
+  \item $R(s, a)$ - the reward function, which assigns a real-valued reward to each state-action pair,
+  \item $\gamma$ - the discount factor, controlling the trade-off between immediate and future rewards.
 \end{itemize}
 
 The RL agent operates based on a policy $\pi$, which maps states to actions, i.e., $\pi: S \rightarrow A$. When the agent selects an action $a_t$ in the current state $s_t$, it impacts the environment, leading to a new state $s_{t+1}$ and an immediate reward $r_t$.
@@ -46,7 +46,7 @@ In the realm of traffic engineering, a signalized intersection represents a comp
   \label{fig:intersection-phase}
 \end{figure}
 
-At each discrete time step, a signal controller is tasked with selecting a combination of non-conflicting phases to enable. The objective is to optimize a long-term objective function, which may vary depending on specific goals and constraints. In the context of Reinforcement Learning (RL)-based controllers, the signalized intersection environment is commonly modeled as a Markov Decision Process (MDP), with the following components:
+A signal controller's job is to choose, at each discrete time step, whether combinations of phases that do not interfere with one another should be enabled. The purpose is to maximize a long-term objective function, which can take on a variety of forms based on the particular requirements imposed by unique goals. When discussing controllers that are based on Reinforcement Learning (RL), it is usual practice to represent the signalized intersection environment as a Markov Decision Process (MDP). This model includes the following components:
 
 \begin{itemize}
   \item \textbf{State Space ($S$):} The state space encompasses the state of incoming traffic and the currently enabled phases. The definition of the state varies among studies, reflecting differing sensing capabilities. Some works assume state-of-the-art traffic sensing technologies, providing high-resolution data on incoming traffic, including information such as the number of approaching vehicles, accumulated waiting time, the number of stopped vehicles, and the average speed of approaching vehicles \cite{chen2020toward}. Others adopt less informative sensing capabilities, such as observing only the stopped queue length per lane \cite{ma2020feudal} or solely the waiting time of the first vehicle in the queue \cite{shabestary2018deep}.
